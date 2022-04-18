@@ -1,5 +1,10 @@
+fig:tensoes
 introdução
 estatica
+distribuição-de-pressão
+e-se-a-densidade-varia
+forças-sobre-comportas
+movimentos-de-corpo-rígido
 integral
 cinematica
 euler
@@ -9,3 +14,4 @@ tubulacoes
 camada
 arrasto
 compressivel
+referências

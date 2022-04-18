@@ -3,6 +3,9 @@ title: "Fundamentos de Mecânica dos Fluidos"
 author: "Fábio P. Fortkamp"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
+bibliography: [thermo-ref/Thermo-Foam-Ref.bib]
+biblio-style: apalike
+citation-style: associacao-brasileira-de-normas-tecnicas.csl
 ---
 
 # Introdução
