@@ -10,8 +10,6 @@ Considere os problemas P2.1 e P2.2 de [@bib:white4]: dado o elemento da Fig.  \@
 knitr::include_graphics("tensoes-white.png")
 ```
 
-AS SOLUÇÕES ABAIXO ESTÃO ERRADAS E PRECISAM SER ATUALIZADAS, BEM COMO EQUAÇÕES.
-
 Em Python, solução do P2.1:
 
 ```{python}
@@ -26,10 +24,10 @@ angle = 30
 theta = radians(angle)
 
 A = np.array(
-  [[cos(pi/2-theta), -cos(theta)],
-  [sin(pi/2-theta), sin(theta)]]
+  [[sin(theta), -cos(theta)],
+  [cos(theta), sin(theta)]]
 )
-b = np.array([sigmaxx+sigmaxy,sigmayy+sigmaxy])
+b = np.array([sigmaxx*sin(theta)+sigmaxy*cos(theta),sigmayy*cos(theta)+sigmaxy*sin(theta)])
 x = solve(A,b)
 sigmaA, tauA = x
 print("Tensão normal sobre plano A, apontando para fora = %.2f N/m2" %(sigmaA))
@@ -60,14 +58,31 @@ print("Tensão cisalhante xy = %.2f N/m2" %sigmaxy)
 print("Tensão cisalhante sobre plano A, apontando para cima = %.2f N/m2" %(tauA))
 ```
 
-O que causa esta distribuição de tensões em um fluido? Se ele está estático, não existem forçcas viscosas (pois se existissem tensões de cisalhamento, por menor que sejam, o fluido escoaria - está é a definição de fluido [@bib:white4]). Na maioria das aplicações de engenharia, a distribuições de tensões estáticas se equilibra com o *peso*: a gravidade puxa o fluido "para baixo", e a pressão cresce nessa direção para suportar o peso.
+O que causa esta distribuição de tensões em um fluido? Se ele está estático, não existem forçcas viscosas (pois se existissem tensões de cisalhamento, por menor que sejam, o fluido escoaria - está é a definição de fluido [@bib:white4]). Portanto, a partir dos resultados acima, podemos concluir que o fluido está em equilíbrio dinâmico mas não estático, pois há tensões cisalhantes atuando
+
+Na maioria das aplicações de engenharia, a distribuições de tensões estáticas se equilibra com o *peso*: a gravidade puxa o fluido "para baixo", e a pressão cresce nessa direção para suportar o peso.
+
 
 ## Distribuição de pressão
 
-A pressão é, poranto, a tensão normal que atua em um fluido quando ele está parado.
+A pressão é, poranto, a tensão normal compressiva que atua em um fluido quando ele está parado, onde também não existem tensões cisalhantes.
 
-### E se a densidade varia?
+Considere o elemento da Figura \@ref(fig:tensoes) nessa situação. O elemento de fluido têm dimensões $(\mathrm{d}x, \mathrm{d}y, \mathrm{d}z)$, densidade local $\rho$ (onde adotamos a hipótese do contínuo, i.e.a densidade pode ser definida ponto a ponto, não importando o "zoom" que damos no sistema). A massa do elemento é poranto $\rho \mathrm{d}x \mathrm{d}y \mathrm{d}z$. A gravidade atua localmente com aceleração $g$, vamos supor na direção $-z$.
 
-## Forças sobre comportas
+Nas direções ortogonais a $z$, na ausência de outros campos, a pressão não pode variar, pois o equilíbrio seria rompido. Um balanço de forças requer então:
 
-## Movimentos de corpo rígido
+$$
+\frac{\mathrm{d} P}{\mathrm{d}z} = -\rho g
+$$
+
+que é, junto com uma equação de estado que relacione a pressão com a temperatura e o conhecimento da distruibuição da gravidade, tudo que se precisa para resolver problemas de estática dos fluidos.
+
+Além do exemplo anterior de "forças sobre comportas", os conceitos de hidrostática acabam aparecendo em outras áreas, de onde é importante ao engenheiro conhecer e compreender; nessas situações, sem um movimento forçado do fluido (sem bombas e ventiladores), temos um sistema de baixo custo e baixo consumo de potência, e esta "troca de potência por eficiência" muitas faz sentido termo-econoômico. 
+
+Muitos sistemas térmicos utilizam da *convecção natural* como mecanismo de troca de calor, pela sua simplicidade, e na convecção natural o movimento do fluido é induzido vela variação de densidade entre regiões mais quentes ou mais frias.
+
+Alguns motores de combustão interna não muito potentes utilizam também um sistema de resfriamento a água por *termosifão*, sem bomba, onde a água (na verdade uma solução aquosa) fria da região do radiador exerce pressão sobre a água quente que escoa pelo motor.
+
+Por fim, podemos citar caldeiras de circulação natural, onde a água de alimentação fria exerce pressão sobre a região das paredes d'água, onde o calor de combustão vaporiza a água.
+
+Estes são exemplos onde equações de estado e pacotes computacionais onde o cálculo preciso da densidade de fluidos - e, em particular, de misturas bifásicas líquido-vapor - acaba permitindo o projeto de sistemas bastante eficientes de resfriamento - um problema permanente na Engenharia Mecânica.

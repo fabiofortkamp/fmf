@@ -23,7 +23,7 @@
 <meta name="author" content="Fábio P. Fortkamp" />
 
 
-<meta name="date" content="2022-04-19" />
+<meta name="date" content="2022-04-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -162,12 +162,7 @@ div.csl-indent {
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introdução<span></span></a></li>
 <li class="chapter" data-level="2" data-path="estatica.html"><a href="estatica.html"><i class="fa fa-check"></i><b>2</b> Estática dos Fluidos<span></span></a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="estatica.html"><a href="estatica.html#distribuição-de-pressão"><i class="fa fa-check"></i><b>2.1</b> Distribuição de pressão<span></span></a>
-<ul>
-<li class="chapter" data-level="2.1.1" data-path="estatica.html"><a href="estatica.html#e-se-a-densidade-varia"><i class="fa fa-check"></i><b>2.1.1</b> E se a densidade varia?<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="2.2" data-path="estatica.html"><a href="estatica.html#forças-sobre-comportas"><i class="fa fa-check"></i><b>2.2</b> Forças sobre comportas<span></span></a></li>
-<li class="chapter" data-level="2.3" data-path="estatica.html"><a href="estatica.html#movimentos-de-corpo-rígido"><i class="fa fa-check"></i><b>2.3</b> Movimentos de corpo rígido<span></span></a></li>
+<li class="chapter" data-level="2.1" data-path="estatica.html"><a href="estatica.html#distribuição-de-pressão"><i class="fa fa-check"></i><b>2.1</b> Distribuição de pressão<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="integral.html"><a href="integral.html"><i class="fa fa-check"></i><b>3</b> Formulação Integral das Equações de Conservação da Massa, da Quantidade de Movimento Linear, da Quantidade de Movimento Angular e da Energia<span></span></a></li>
 <li class="chapter" data-level="4" data-path="cinematica.html"><a href="cinematica.html"><i class="fa fa-check"></i><b>4</b> Cinemática<span></span></a></li>
@@ -209,7 +204,6 @@ div.csl-indent {
 Figura 2.1: Elemento de fluido sob tensão. Fonte: <span class="citation">(WHITE, 2001)</span>
 </p>
 </div>
-<p>AS SOLUÇÕES ABAIXO ESTÃO ERRADAS E PRECISAM SER ATUALIZADAS, BEM COMO EQUAÇÕES.</p>
 <p>Em Python, solução do P2.1:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="estatica.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.linalg <span class="im">import</span> solve</span>
 <span id="cb1-2"><a href="estatica.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -222,16 +216,16 @@ Figura 2.1: Elemento de fluido sob tensão. Fonte: <span class="citation">(WHITE
 <span id="cb1-9"><a href="estatica.html#cb1-9" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> radians(angle)</span>
 <span id="cb1-10"><a href="estatica.html#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-11"><a href="estatica.html#cb1-11" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array(</span>
-<span id="cb1-12"><a href="estatica.html#cb1-12" aria-hidden="true" tabindex="-1"></a>  [[cos(pi<span class="op">/</span><span class="dv">2</span><span class="op">-</span>theta), <span class="op">-</span>cos(theta)],</span>
-<span id="cb1-13"><a href="estatica.html#cb1-13" aria-hidden="true" tabindex="-1"></a>  [sin(pi<span class="op">/</span><span class="dv">2</span><span class="op">-</span>theta), sin(theta)]]</span>
+<span id="cb1-12"><a href="estatica.html#cb1-12" aria-hidden="true" tabindex="-1"></a>  [[sin(theta), <span class="op">-</span>cos(theta)],</span>
+<span id="cb1-13"><a href="estatica.html#cb1-13" aria-hidden="true" tabindex="-1"></a>  [cos(theta), sin(theta)]]</span>
 <span id="cb1-14"><a href="estatica.html#cb1-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-15"><a href="estatica.html#cb1-15" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([sigmaxx<span class="op">+</span>sigmaxy,sigmayy<span class="op">+</span>sigmaxy])</span>
+<span id="cb1-15"><a href="estatica.html#cb1-15" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([sigmaxx<span class="op">*</span>sin(theta)<span class="op">+</span>sigmaxy<span class="op">*</span>cos(theta),sigmayy<span class="op">*</span>cos(theta)<span class="op">+</span>sigmaxy<span class="op">*</span>sin(theta)])</span>
 <span id="cb1-16"><a href="estatica.html#cb1-16" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> solve(A,b)</span>
 <span id="cb1-17"><a href="estatica.html#cb1-17" aria-hidden="true" tabindex="-1"></a>sigmaA, tauA <span class="op">=</span> x</span>
 <span id="cb1-18"><a href="estatica.html#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Tensão normal sobre plano A, apontando para fora = </span><span class="sc">%.2f</span><span class="st"> N/m2&quot;</span> <span class="op">%</span>(sigmaA))</span></code></pre></div>
-<pre><code>## Tensão normal sobre plano A, apontando para fora = 187453.24 N/m2</code></pre>
+<pre><code>## Tensão normal sobre plano A, apontando para fora = 128462.65 N/m2</code></pre>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="estatica.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Tensão cisalhante sobre plano A, apontando para cima = </span><span class="sc">%.2f</span><span class="st"> N/m2&quot;</span> <span class="op">%</span>(tauA))</span></code></pre></div>
-<pre><code>## Tensão cisalhante sobre plano A, apontando para cima = -85278.54 N/m2</code></pre>
+<pre><code>## Tensão cisalhante sobre plano A, apontando para cima = -32702.65 N/m2</code></pre>
 <p>No P2.2 a <em>condição de equilíbrio</em> é a mesma, mas as incógnitas são diferentes:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="estatica.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.linalg <span class="im">import</span> solve</span>
 <span id="cb5-2"><a href="estatica.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -254,19 +248,22 @@ Figura 2.1: Elemento de fluido sob tensão. Fonte: <span class="citation">(WHITE
 <pre><code>## Tensão cisalhante xy = -13821.77 N/m2</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="estatica.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Tensão cisalhante sobre plano A, apontando para cima = </span><span class="sc">%.2f</span><span class="st"> N/m2&quot;</span> <span class="op">%</span>(tauA))</span></code></pre></div>
 <pre><code>## Tensão cisalhante sobre plano A, apontando para cima = 27643.53 N/m2</code></pre>
-<p>O que causa esta distribuição de tensões em um fluido? Se ele está estático, não existem forçcas viscosas (pois se existissem tensões de cisalhamento, por menor que sejam, o fluido escoaria - está é a definição de fluido <span class="citation">(WHITE, 2001)</span>). Na maioria das aplicações de engenharia, a distribuições de tensões estáticas se equilibra com o <em>peso</em>: a gravidade puxa o fluido “para baixo”, e a pressão cresce nessa direção para suportar o peso.</p>
+<p>O que causa esta distribuição de tensões em um fluido? Se ele está estático, não existem forçcas viscosas (pois se existissem tensões de cisalhamento, por menor que sejam, o fluido escoaria - está é a definição de fluido <span class="citation">(WHITE, 2001)</span>). Portanto, a partir dos resultados acima, podemos concluir que o fluido está em equilíbrio dinâmico mas não estático, pois há tensões cisalhantes atuando</p>
+<p>Na maioria das aplicações de engenharia, a distribuições de tensões estáticas se equilibra com o <em>peso</em>: a gravidade puxa o fluido “para baixo”, e a pressão cresce nessa direção para suportar o peso.</p>
 <div id="distribuição-de-pressão" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Distribuição de pressão<a href="estatica.html#distribuição-de-pressão" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A pressão é, poranto, a tensão normal que atua em um fluido quando ele está parado.</p>
-<div id="e-se-a-densidade-varia" class="section level3 hasAnchor" number="2.1.1">
-<h3><span class="header-section-number">2.1.1</span> E se a densidade varia?<a href="estatica.html#e-se-a-densidade-varia" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-</div>
-<div id="forças-sobre-comportas" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Forças sobre comportas<a href="estatica.html#forças-sobre-comportas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-</div>
-<div id="movimentos-de-corpo-rígido" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> Movimentos de corpo rígido<a href="estatica.html#movimentos-de-corpo-rígido" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A pressão é, poranto, a tensão normal compressiva que atua em um fluido quando ele está parado, onde também não existem tensões cisalhantes.</p>
+<p>Considere o elemento da Figura <a href="estatica.html#fig:tensoes">2.1</a> nessa situação. O elemento de fluido têm dimensões <span class="math inline">\((\mathrm{d}x, \mathrm{d}y, \mathrm{d}z)\)</span>, densidade local <span class="math inline">\(\rho\)</span> (onde adotamos a hipótese do contínuo, i.e.a densidade pode ser definida ponto a ponto, não importando o “zoom” que damos no sistema). A massa do elemento é poranto <span class="math inline">\(\rho \mathrm{d}x \mathrm{d}y \mathrm{d}z\)</span>. A gravidade atua localmente com aceleração <span class="math inline">\(g\)</span>, vamos supor na direção <span class="math inline">\(-z\)</span>.</p>
+<p>Nas direções ortogonais a <span class="math inline">\(z\)</span>, na ausência de outros campos, a pressão não pode variar, pois o equilíbrio seria rompido. Um balanço de forças requer então:</p>
+<p><span class="math display">\[
+\frac{\mathrm{d} P}{\mathrm{d}z} = -\rho g
+\]</span></p>
+<p>que é, junto com uma equação de estado que relacione a pressão com a temperatura e o conhecimento da distruibuição da gravidade, tudo que se precisa para resolver problemas de estática dos fluidos.</p>
+<p>Além do exemplo anterior de “forças sobre comportas”, os conceitos de hidrostática acabam aparecendo em outras áreas, de onde é importante ao engenheiro conhecer e compreender; nessas situações, sem um movimento forçado do fluido (sem bombas e ventiladores), temos um sistema de baixo custo e baixo consumo de potência, e esta “troca de potência por eficiência” muitas faz sentido termo-econoômico.</p>
+<p>Muitos sistemas térmicos utilizam da <em>convecção natural</em> como mecanismo de troca de calor, pela sua simplicidade, e na convecção natural o movimento do fluido é induzido vela variação de densidade entre regiões mais quentes ou mais frias.</p>
+<p>Alguns motores de combustão interna não muito potentes utilizam também um sistema de resfriamento a água por <em>termosifão</em>, sem bomba, onde a água (na verdade uma solução aquosa) fria da região do radiador exerce pressão sobre a água quente que escoa pelo motor.</p>
+<p>Por fim, podemos citar caldeiras de circulação natural, onde a água de alimentação fria exerce pressão sobre a região das paredes d’água, onde o calor de combustão vaporiza a água.</p>
+<p>Estes são exemplos onde equações de estado e pacotes computacionais onde o cálculo preciso da densidade de fluidos - e, em particular, de misturas bifásicas líquido-vapor - acaba permitindo o projeto de sistemas bastante eficientes de resfriamento - um problema permanente na Engenharia Mecânica.</p>
 
 </div>
 </div>
@@ -330,6 +327,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
