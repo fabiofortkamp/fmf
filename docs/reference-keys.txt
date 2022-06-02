@@ -2,6 +2,9 @@ fig:tensoes
 introdução
 estatica
 distribuição-de-pressão
+fluido-incompressível
+equação-de-estado
+outros-exemplos-de-aplicações
 integral
 cinematica
 euler

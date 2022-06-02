@@ -6,10 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 2 Estática dos Fluidos | Fundamentos de Mecânica dos Fluidos</title>
   <meta name="description" content="Capítulo 2 Estática dos Fluidos | Fundamentos de Mecânica dos Fluidos" />
-  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24.10 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 2 Estática dos Fluidos | Fundamentos de Mecânica dos Fluidos" />
   <meta property="og:type" content="book" />
+  
   
   
   
@@ -23,7 +24,7 @@
 <meta name="author" content="Fábio P. Fortkamp" />
 
 
-<meta name="date" content="2022-04-24" />
+<meta name="date" content="2022-06-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -162,7 +163,12 @@ div.csl-indent {
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introdução<span></span></a></li>
 <li class="chapter" data-level="2" data-path="estatica.html"><a href="estatica.html"><i class="fa fa-check"></i><b>2</b> Estática dos Fluidos<span></span></a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="estatica.html"><a href="estatica.html#distribuição-de-pressão"><i class="fa fa-check"></i><b>2.1</b> Distribuição de pressão<span></span></a></li>
+<li class="chapter" data-level="2.1" data-path="estatica.html"><a href="estatica.html#distribuição-de-pressão"><i class="fa fa-check"></i><b>2.1</b> Distribuição de pressão<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="estatica.html"><a href="estatica.html#fluido-incompressível"><i class="fa fa-check"></i><b>2.1.1</b> Fluido incompressível<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="estatica.html"><a href="estatica.html#equação-de-estado"><i class="fa fa-check"></i><b>2.2</b> Equação de estado<span></span></a></li>
+<li class="chapter" data-level="2.3" data-path="estatica.html"><a href="estatica.html#outros-exemplos-de-aplicações"><i class="fa fa-check"></i><b>2.3</b> Outros exemplos de aplicações<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="integral.html"><a href="integral.html"><i class="fa fa-check"></i><b>3</b> Formulação Integral das Equações de Conservação da Massa, da Quantidade de Movimento Linear, da Quantidade de Movimento Angular e da Energia<span></span></a></li>
 <li class="chapter" data-level="4" data-path="cinematica.html"><a href="cinematica.html"><i class="fa fa-check"></i><b>4</b> Cinemática<span></span></a></li>
@@ -196,7 +202,7 @@ div.csl-indent {
 <div id="estatica" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">Capítulo 2</span> Estática dos Fluidos<a href="estatica.html#estatica" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Muitos sistemas de engenharia usam reservatórios de fluidos, como os tanques de combustíveis em automóveis ou os reservatórios de rejeitos em minas; infelizmente, temos no Brasil exemplos trágicos de rompimentos de barragens, como em <a href="https://g1.globo.com/minas-gerais/noticia/2015/11/barragem-de-rejeitos-se-rompe-em-distrito-de-mariana.html">Mariana</a> e <a href="https://g1.globo.com/mg/minas-gerais/noticia/2019/01/25/bombeiros-e-defesa-civil-sao-mobilizados-para-chamada-de-rompimento-de-barragem-em-brumadinho-na-grande-bh.ghtml">Brumadinho</a>, quando o material estrutural não conseguiu aguentar as forças que o fluido exerciam sobre ele.</p>
-<p>Todo elemento de fluido que sofre ação de forças externas desenvolve uma <em>distribuição de tensões internas</em> que contra-balança essas forças externas, como a pressão atmosférica ou a ação gravitacional.</p>
+<p>Todo elemento de fluido que sofre ação de forças externas (como a pressão atmosférica ou a ação gravitacional) desenvolve uma <em>distribuição de tensões internas</em> que contra-balança essas forças.</p>
 <p>Considere os problemas P2.1 e P2.2 de <span class="citation">(WHITE, 2001)</span>: dado o elemento da Fig. <a href="estatica.html#fig:tensoes">2.1</a>, e se algumas tensões são especificadas, como calcular as outras? A chave é que, <em>se o fluido está em equilíbrio</em>, então o somatório de forças é nulo em todas as direções.</p>
 <div class="figure"><span style="display:block;" id="fig:tensoes"></span>
 <img src="tensoes-white.png" alt="Elemento de fluido sob tensão. Fonte: [@bib:white4]" width="226" />
@@ -248,17 +254,61 @@ Figura 2.1: Elemento de fluido sob tensão. Fonte: <span class="citation">(WHITE
 <pre><code>## Tensão cisalhante xy = -13821.77 N/m2</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="estatica.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Tensão cisalhante sobre plano A, apontando para cima = </span><span class="sc">%.2f</span><span class="st"> N/m2&quot;</span> <span class="op">%</span>(tauA))</span></code></pre></div>
 <pre><code>## Tensão cisalhante sobre plano A, apontando para cima = 27643.53 N/m2</code></pre>
-<p>O que causa esta distribuição de tensões em um fluido? Se ele está estático, não existem forçcas viscosas (pois se existissem tensões de cisalhamento, por menor que sejam, o fluido escoaria - está é a definição de fluido <span class="citation">(WHITE, 2001)</span>). Portanto, a partir dos resultados acima, podemos concluir que o fluido está em equilíbrio dinâmico mas não estático, pois há tensões cisalhantes atuando</p>
+<p>O que causa esta distribuição de tensões em um fluido? Se ele está estático, não existem forçcas viscosas (pois se existissem tensões de cisalhamento, por menor que sejam, o fluido escoaria - está é a definição de fluido <span class="citation">(WHITE, 2001)</span> - e portanto não estaria estático). Portanto, a partir dos resultados acima, podemos concluir que o fluido está em equilíbrio dinâmico mas não estático, pois há tensões cisalhantes atuando.</p>
 <p>Na maioria das aplicações de engenharia, a distribuições de tensões estáticas se equilibra com o <em>peso</em>: a gravidade puxa o fluido “para baixo”, e a pressão cresce nessa direção para suportar o peso.</p>
 <div id="distribuição-de-pressão" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Distribuição de pressão<a href="estatica.html#distribuição-de-pressão" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A pressão é, poranto, a tensão normal compressiva que atua em um fluido quando ele está parado, onde também não existem tensões cisalhantes.</p>
-<p>Considere o elemento da Figura <a href="estatica.html#fig:tensoes">2.1</a> nessa situação. O elemento de fluido têm dimensões <span class="math inline">\((\mathrm{d}x, \mathrm{d}y, \mathrm{d}z)\)</span>, densidade local <span class="math inline">\(\rho\)</span> (onde adotamos a hipótese do contínuo, i.e.a densidade pode ser definida ponto a ponto, não importando o “zoom” que damos no sistema). A massa do elemento é poranto <span class="math inline">\(\rho \mathrm{d}x \mathrm{d}y \mathrm{d}z\)</span>. A gravidade atua localmente com aceleração <span class="math inline">\(g\)</span>, vamos supor na direção <span class="math inline">\(-z\)</span>.</p>
-<p>Nas direções ortogonais a <span class="math inline">\(z\)</span>, na ausência de outros campos, a pressão não pode variar, pois o equilíbrio seria rompido. Um balanço de forças requer então:</p>
+<p>A pressão é, portanto, a tensão normal compressiva que atua em um fluido quando ele está parado, onde também não existem tensões cisalhantes.</p>
+<p>Considere o elemento da Figura <a href="estatica.html#fig:tensoes">2.1</a> nessa situação. O elemento de fluido têm dimensões <span class="math inline">\((\mathrm{d}x, \mathrm{d}y, \mathrm{d}z)\)</span>, densidade local <span class="math inline">\(\rho\)</span> (onde adotamos a hipótese do contínuo, i.e. a densidade pode ser definida ponto a ponto, não importando o “zoom” que damos no sistema). A massa do elemento é poranto <span class="math inline">\(\rho \mathrm{d}x \mathrm{d}y \mathrm{d}z\)</span>. A gravidade atua localmente com aceleração <span class="math inline">\(g\)</span>, vamos supor na direção <span class="math inline">\(-z\)</span>. A força peso é então</p>
+<p><span class="math display">\[
+\vec{F}_{\mathrm{g}} = - \rho g \mathrm{d}x \mathrm{d}y \mathrm{d}z \hat{k}
+\]</span></p>
+<p>A pressão que atua sobre a face normal a <span class="math inline">\(z\)</span> em um plano <span class="math inline">\(z\)</span> é <span class="math inline">\(P(z)\mathrm{d}x\mathrm{d}y\)</span> no sentido positivo de <span class="math inline">\(z\)</span>, enquanto que na face a <span class="math inline">\(z + \mathrm{d}z\)</span> é <span class="math inline">\((P + \frac{\mathrm{d} P}{\mathrm{d}z}\mathrm{d}z)\mathrm{d}x\mathrm{d}y\)</span>, no sentido <span class="math inline">\(-z\)</span>. A força no sentido positivo de <span class="math inline">\(z\)</span> é então <span class="math inline">\(-\frac{\mathrm{d} P}{\mathrm{d}z}\mathrm{d}x \mathrm{d}y \mathrm{d}z\hat{k}\)</span></p>
+<p>Nas direções ortogonais a <span class="math inline">\(z\)</span>, na ausência de outros campos, a pressão não pode variar, pois o equilíbrio seria rompido. Na direçAo <span class="math inline">\(z\)</span>, o somatório das forças de pressão e peso deve ser nulo. Logo, um balanço de forças requer:</p>
 <p><span class="math display">\[
 \frac{\mathrm{d} P}{\mathrm{d}z} = -\rho g
 \]</span></p>
-<p>que é, junto com uma equação de estado que relacione a pressão com a temperatura e o conhecimento da distruibuição da gravidade, tudo que se precisa para resolver problemas de estática dos fluidos.</p>
+<div id="fluido-incompressível" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Fluido incompressível<a href="estatica.html#fluido-incompressível" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Num fluido incompressível, onde as variações de densidade são desprezíveis (o que vale para a maioria dos líquidos de interesse em engenharia, como água, hidrocarbonetos na fase líquida e óleos minerais e vegetais), a equação acima é tudo que se precisa saber para resolver problemas de estática dos fluidos. A gravidade é uma constante a uma determinada altitude (e aplicações com líquidos não vão cobrir variações de altitude de centenas de metros), e a densidade também é uma constante. Para entender isso, vamos considerar uma aplicação de geração de energia: em usinas termelétricas a vapor, água é bombeada de pressões de cerca de 10 kPa até 160 bar (ou mais). Vamos considerar que esse processo é isentrópico. A densidade da água saturada a 10 kPa é:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="estatica.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> CoolProp.CoolProp <span class="im">import</span> PropsSI</span>
+<span id="cb9-2"><a href="estatica.html#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="estatica.html#cb9-3" aria-hidden="true" tabindex="-1"></a>d1 <span class="op">=</span> PropsSI(<span class="st">&quot;D&quot;</span>,<span class="st">&quot;P&quot;</span>,<span class="fl">10e3</span>,<span class="st">&quot;Q&quot;</span>,<span class="dv">0</span>,<span class="st">&quot;Water&quot;</span>)</span>
+<span id="cb9-4"><a href="estatica.html#cb9-4" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> PropsSI(<span class="st">&quot;S&quot;</span>,<span class="st">&quot;P&quot;</span>,<span class="fl">10e3</span>,<span class="st">&quot;Q&quot;</span>,<span class="dv">0</span>,<span class="st">&quot;Water&quot;</span>)</span>
+<span id="cb9-5"><a href="estatica.html#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">str</span>(d1) <span class="op">+</span> <span class="st">&quot; kg/m3&quot;</span>)</span></code></pre></div>
+<pre><code>## 989.8332753648964 kg/m3</code></pre>
+<p>E do líquido na pressão de 160 bar, com mesma entropia:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="estatica.html#cb11-1" aria-hidden="true" tabindex="-1"></a>d2 <span class="op">=</span> PropsSI(<span class="st">&quot;D&quot;</span>,<span class="st">&quot;P&quot;</span>,<span class="fl">160e5</span>,<span class="st">&quot;S&quot;</span>,s1,<span class="st">&quot;Water&quot;</span>)</span>
+<span id="cb11-2"><a href="estatica.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="sc">%.2f</span><span class="st"> kg/m3&quot;</span> <span class="op">%</span>(d2,))</span></code></pre></div>
+<pre><code>## 996.47 kg/m3</code></pre>
+<p>o que é uma variação muito pequena de densidade para uma variação muito grande de pressão, e esse aumento de pressão é forçado pelo trabalho de uma bomba. Em aplicações hidrostáticas, o aumento de pressão não vai ser tão grande assim, e portanto é bastante comum usar valores constantes de densidade (geralmente retirados de alguma tabela em condições ambientes como a 20 ˚C).</p>
+<p>Os exemplos anteriores mostram uma grande facilidade atual de engenharia: bibliotecas computacionais como CoolProp <span class="citation">(BELL et al., 2014)</span> que implementam equações de estado modernas e correlações experimentais para muitos fluidos de interesse em engenharia.</p>
+</div>
+</div>
+<div id="equação-de-estado" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Equação de estado<a href="estatica.html#equação-de-estado" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>E se o fluido for compressível, i.e. a densidade e a pressão são relacionadas? A equação de equilíbrio pode ser integrada numericamente usando as bibliotecas acima, mas <em>alguma</em> hipótese sobre a distribuição de temperatura deve ser feita.</p>
+<p>Um caso típico de “reservatório estático de fluido compressível” é a atmosfera. A pressão decresce no sentido ascendente pela equação de equilíbrio, o que tende a diminuir a densidade (fluido fica mais rarefeito), mas se a temperatura também diminuir, a densidade aumenta pelo efeito de resfriamento de fluido.</p>
+<p>O caso de referência é uma atmosfera <em>adiabática</em>, onde não existe transferência de calor. Uma partícula infinitesimal de fluido que se movimenta nessa atmosfera não experimenta gradientes de velocidade, e portanto não sofre atrito, e se move de maneira isentrópica (adiabática e reversível). Em relação a um estado <span class="math inline">\(0\)</span> em uma posição <span class="math inline">\(z_0\)</span> (onde novamente o eixo <span class="math inline">\(-z\)</span> está alinhado com a gravidade). A variação de pressão e temperatura com a densidade, usando a equação de estado de gases ideais:</p>
+<p><span class="math display">\[
+P = \rho R T
+\]</span></p>
+<p>é:</p>
+<p><span class="math display">\[
+\frac{T}{T_0} = \left(\frac{P}{P_0}\right)^{\frac{k-1}{k}}
+\]</span></p>
+<p><span class="math display">\[
+\frac{\rho}{\rho_0} = \left(\frac{P}{P_0}\right)^{\frac{1}{k}}
+\]</span></p>
+<p>onde <span class="math inline">\(k\)</span> é a razão dos calores específicos, supostos constantes.</p>
+<p>A variação adiabática de temperatura pode ser derivada então como:</p>
+<p><span class="math display">\[
+\frac{\mathrm{d} T_{\mathrm{a}}}{\mathrm{d}z} = \frac{-g}{c_p}
+\]</span></p>
+<p>Se, por ação de transferência de calor entre massas de ar, a temperatura variar mais rapidamente que isso, então o movimento da partícula de fluido é <em>instável</em>, e correntes de convecção se formam - o que é bastante relevante para o cálculo de forças sobre prédios e aviões. Experimentalmente, porém, observa-se que a atmosfera até cerca de 2 km é bastante estável <span class="citation">(KUNDU; COHEN, 2001)</span>.</p>
+</div>
+<div id="outros-exemplos-de-aplicações" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Outros exemplos de aplicações<a href="estatica.html#outros-exemplos-de-aplicações" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Além do exemplo anterior de “forças sobre comportas”, os conceitos de hidrostática acabam aparecendo em outras áreas, de onde é importante ao engenheiro conhecer e compreender; nessas situações, sem um movimento forçado do fluido (sem bombas e ventiladores), temos um sistema de baixo custo e baixo consumo de potência, e esta “troca de potência por eficiência” muitas faz sentido termo-econoômico.</p>
 <p>Muitos sistemas térmicos utilizam da <em>convecção natural</em> como mecanismo de troca de calor, pela sua simplicidade, e na convecção natural o movimento do fluido é induzido vela variação de densidade entre regiões mais quentes ou mais frias.</p>
 <p>Alguns motores de combustão interna não muito potentes utilizam também um sistema de resfriamento a água por <em>termosifão</em>, sem bomba, onde a água (na verdade uma solução aquosa) fria da região do radiador exerce pressão sobre a água quente que escoa pelo motor.</p>
