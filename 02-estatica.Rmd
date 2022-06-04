@@ -1,6 +1,6 @@
 # Estática dos Fluidos {#estatica}
 
-Muitos sistemas de engenharia usam reservatórios de fluidos, como os tanques de combustíveis em automóveis ou os reservatórios de rejeitos em minas; infelizmente, temos no Brasil exemplos trágicos de rompimentos de barragens, como em [Mariana](https://g1.globo.com/minas-gerais/noticia/2015/11/barragem-de-rejeitos-se-rompe-em-distrito-de-mariana.html) e [Brumadinho](https://g1.globo.com/mg/minas-gerais/noticia/2019/01/25/bombeiros-e-defesa-civil-sao-mobilizados-para-chamada-de-rompimento-de-barragem-em-brumadinho-na-grande-bh.ghtml), quando o material estrutural não conseguiu aguentar as forças que o fluido exerciam sobre ele.
+Muitos sistemas de engenharia usam reservatórios de fluidos, como os tanques de combustíveis em automóveis ou os reservatórios de rejeitos em minas; infelizmente, temos no Brasil exemplos trágicos de rompimentos de barragens, como em [Mariana](https://g1.globo.com/minas-gerais/noticia/2015/11/barragem-de-rejeitos-se-rompe-em-distrito-de-mariana.html) e [Brumadinho](https://g1.globo.com/mg/minas-gerais/noticia/2019/01/25/bombeiros-e-defesa-civil-sao-mobilizados-para-chamada-de-rompimento-de-barragem-em-brumadinho-na-grande-bh.ghtml), quando o material estrutural não conseguiu aguentar as forças que o fluido exercia sobre ele.
 
 Todo elemento de fluido que sofre ação de forças externas (como a pressão atmosférica ou a ação gravitacional) desenvolve uma *distribuição de tensões internas* que contra-balança essas forças.
 
@@ -75,7 +75,7 @@ $$
 
 A pressão que atua sobre a face normal a $z$ em um plano $z$ é $P(z)\mathrm{d}x\mathrm{d}y$ no sentido positivo de $z$, enquanto que na face a $z + \mathrm{d}z$ é $(P + \frac{\mathrm{d} P}{\mathrm{d}z}\mathrm{d}z)\mathrm{d}x\mathrm{d}y$, no sentido $-z$. A força no sentido positivo de $z$ é então $-\frac{\mathrm{d} P}{\mathrm{d}z}\mathrm{d}x \mathrm{d}y \mathrm{d}z\hat{k}$
 
-Nas direções ortogonais a $z$, na ausência de outros campos, a pressão não pode variar, pois o equilíbrio seria rompido. Na direçAo $z$, o somatório das forças de pressão e peso deve ser nulo. Logo, um balanço de forças requer:
+Nas direções ortogonais a $z$, na ausência de outros campos, a pressão não pode variar, pois o equilíbrio seria rompido. Na direção $z$, o somatório das forças de pressão e peso deve ser nulo. Logo, um balanço de forças requer:
 
 $$
 \frac{\mathrm{d} P}{\mathrm{d}z} = -\rho g
@@ -101,7 +101,7 @@ print("%.2f kg/m3" %(d2,))
 
 o que é uma variação muito pequena de densidade para uma variação muito grande de pressão, e esse aumento de pressão é forçado pelo trabalho de uma bomba. Em aplicações hidrostáticas, o aumento de pressão não vai ser tão grande assim, e portanto é bastante comum usar valores constantes de densidade (geralmente retirados de alguma tabela em condições ambientes como a 20 ˚C).
 
-Os exemplos anteriores mostram uma grande facilidade atual de engenharia: bibliotecas computacionais como CoolProp [@bib:coolprop] que implementam equações de estado modernas e correlações experimentais para muitos fluidos de interesse em engenharia.
+Os exemplos anteriores mostram uma grande facilidade atual de engenharia: bibliotecas computacionais como [CoolProp](https://coolprop.org) [@bib:coolprop] que implementam equações de estado modernas e correlações experimentais para muitos fluidos de interesse em engenharia.
 
 ## Equação de estado
 
@@ -133,16 +133,30 @@ $$
 \frac{\mathrm{d} T_{\mathrm{a}}}{\mathrm{d}z} = \frac{-g}{c_p}
 $$
 
-Se, por ação de transferência de calor entre massas de ar, a temperatura variar mais rapidamente que isso, então o movimento da partícula de fluido é *instável*, e correntes de convecção se formam - o que é bastante relevante para o cálculo de forças sobre prédios e aviões. Experimentalmente, porém, observa-se que a atmosfera até cerca de 2 km é bastante estável [@bib:kundu01-fluid-mechan].
+Se, por ação de transferência de calor entre massas de ar, a temperatura variar mais rapidamente que isso, então o movimento da partícula de fluido é *instável*, o que é bastante relevante para o cálculo de forças sobre prédios e aviões. Experimentalmente, porém, observa-se que a atmosfera até cerca de 2 km é bastante estável [@bib:kundu01-fluid-mechan].
+
+## E o tal cálculo da força?
+
+Como falado no início deste ensaio, grandes acidentes em reservatórios são causados porque a força que age sobre as suas paredes é maior que a resistência dos materiais que compõe as paredes. Esses efeitos são agravados por reações químicas (e.g. corrosão) que não só diminuem a espessura das paredes como alteram a micro-estrutura do material, diminuindo intensamente sua resistência.
+
+Como a se sabe a distribuição de pressão em um fluido estático, a força que este fluido exerce sobre um corpo sólido de área superficial $A_{\mathrm{s}}$ é simplesmente
+
+$$
+F = \int_{A_{\mathrm{s}}} P \mathrm{d}\sigma
+$$
+
+Para o caso particular de uma superfície plana imersa em um fluido incompressível, pode-se mostrar [@bib:white6] que a esta força é igual à pressão local no seu centróide (centro de massa) multiplicada pela área superficial total. Entretanto, a linha de força *não passa* pelo seu centróide, mas sim pelo *centro de pressão*, cuja localização pode ser determinada a partir dos momentos de inércia da superfície [@bib:white6].
+
+A explicação acima é um dos grandes paralelos entre a mecânica dos sólidos e a mecânica dos fluidos; na minha opinião, estes cursos deveriam ser bem mais integrados no currículo de engenharia. Por mais que estudemos aplicações envolvendo armazenamento e escoamento de fluidos, nós nunca deixamos de ser engenheiros *mecânicos*.
 
 ## Outros exemplos de aplicações
 
-Além do exemplo anterior de "forças sobre comportas", os conceitos de hidrostática acabam aparecendo em outras áreas, de onde é importante ao engenheiro conhecer e compreender; nessas situações, sem um movimento forçado do fluido (sem bombas e ventiladores), temos um sistema de baixo custo e baixo consumo de potência, e esta "troca de potência por eficiência" muitas faz sentido termo-econoômico. 
+Além do exemplo anterior de "forças sobre comportas", os conceitos de hidrostática acabam aparecendo em outras áreas; nessas situações, sem um movimento forçado do fluido (ou seja, sem bombas e ventiladores), temos um sistema de baixo custo e baixo consumo de potência, e esta "troca de potência por eficiência" muitas faz sentido termo-econoômico. 
 
 Muitos sistemas térmicos utilizam da *convecção natural* como mecanismo de troca de calor, pela sua simplicidade, e na convecção natural o movimento do fluido é induzido vela variação de densidade entre regiões mais quentes ou mais frias.
 
-Alguns motores de combustão interna não muito potentes utilizam também um sistema de resfriamento a água por *termosifão*, sem bomba, onde a água (na verdade uma solução aquosa) fria da região do radiador exerce pressão sobre a água quente que escoa pelo motor.
+Alguns motores de combustão interna não muito potentes utilizam também um sistema de resfriamento a água por *termossifão*, sem bomba, onde a água (na verdade uma solução aquosa) fria da região do radiador exerce pressão sobre a água quente que escoa pelo motor.
 
 Por fim, podemos citar caldeiras de circulação natural, onde a água de alimentação fria exerce pressão sobre a região das paredes d'água, onde o calor de combustão vaporiza a água.
 
-Estes são exemplos onde equações de estado e pacotes computacionais onde o cálculo preciso da densidade de fluidos - e, em particular, de misturas bifásicas líquido-vapor - acaba permitindo o projeto de sistemas bastante eficientes de resfriamento - um problema permanente na Engenharia Mecânica.
+Estas não são aplicações da estática dos fluidos, rigorosamente falando, já que há escoamento, com seus problemas característicos; mas são exemplos onde o conhecimento da distribuição de pressão, juntamente com equações de estado e pacotes computacionais para preciso da densidade de fluidos - e, em particular, de misturas bifásicas líquido-vapor - acabam permitindo o projeto de sistemas bastante eficientes de resfriamento - um problema permanente na Engenharia Mecânica.

@@ -24,7 +24,7 @@
 <meta name="author" content="Fábio P. Fortkamp" />
 
 
-<meta name="date" content="2022-06-02" />
+<meta name="date" content="2022-06-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -168,7 +168,8 @@ div.csl-indent {
 <li class="chapter" data-level="2.1.1" data-path="estatica.html"><a href="estatica.html#fluido-incompressível"><i class="fa fa-check"></i><b>2.1.1</b> Fluido incompressível<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="estatica.html"><a href="estatica.html#equação-de-estado"><i class="fa fa-check"></i><b>2.2</b> Equação de estado<span></span></a></li>
-<li class="chapter" data-level="2.3" data-path="estatica.html"><a href="estatica.html#outros-exemplos-de-aplicações"><i class="fa fa-check"></i><b>2.3</b> Outros exemplos de aplicações<span></span></a></li>
+<li class="chapter" data-level="2.3" data-path="estatica.html"><a href="estatica.html#e-o-tal-cálculo-da-força"><i class="fa fa-check"></i><b>2.3</b> E o tal cálculo da força?<span></span></a></li>
+<li class="chapter" data-level="2.4" data-path="estatica.html"><a href="estatica.html#outros-exemplos-de-aplicações"><i class="fa fa-check"></i><b>2.4</b> Outros exemplos de aplicações<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="integral.html"><a href="integral.html"><i class="fa fa-check"></i><b>3</b> Formulação Integral das Equações de Conservação da Massa, da Quantidade de Movimento Linear, da Quantidade de Movimento Angular e da Energia<span></span></a></li>
 <li class="chapter" data-level="4" data-path="cinematica.html"><a href="cinematica.html"><i class="fa fa-check"></i><b>4</b> Cinemática<span></span></a></li>
@@ -201,7 +202,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="estatica" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">Capítulo 2</span> Estática dos Fluidos<a href="estatica.html#estatica" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Muitos sistemas de engenharia usam reservatórios de fluidos, como os tanques de combustíveis em automóveis ou os reservatórios de rejeitos em minas; infelizmente, temos no Brasil exemplos trágicos de rompimentos de barragens, como em <a href="https://g1.globo.com/minas-gerais/noticia/2015/11/barragem-de-rejeitos-se-rompe-em-distrito-de-mariana.html">Mariana</a> e <a href="https://g1.globo.com/mg/minas-gerais/noticia/2019/01/25/bombeiros-e-defesa-civil-sao-mobilizados-para-chamada-de-rompimento-de-barragem-em-brumadinho-na-grande-bh.ghtml">Brumadinho</a>, quando o material estrutural não conseguiu aguentar as forças que o fluido exerciam sobre ele.</p>
+<p>Muitos sistemas de engenharia usam reservatórios de fluidos, como os tanques de combustíveis em automóveis ou os reservatórios de rejeitos em minas; infelizmente, temos no Brasil exemplos trágicos de rompimentos de barragens, como em <a href="https://g1.globo.com/minas-gerais/noticia/2015/11/barragem-de-rejeitos-se-rompe-em-distrito-de-mariana.html">Mariana</a> e <a href="https://g1.globo.com/mg/minas-gerais/noticia/2019/01/25/bombeiros-e-defesa-civil-sao-mobilizados-para-chamada-de-rompimento-de-barragem-em-brumadinho-na-grande-bh.ghtml">Brumadinho</a>, quando o material estrutural não conseguiu aguentar as forças que o fluido exercia sobre ele.</p>
 <p>Todo elemento de fluido que sofre ação de forças externas (como a pressão atmosférica ou a ação gravitacional) desenvolve uma <em>distribuição de tensões internas</em> que contra-balança essas forças.</p>
 <p>Considere os problemas P2.1 e P2.2 de <span class="citation">(WHITE, 2001)</span>: dado o elemento da Fig. <a href="estatica.html#fig:tensoes">2.1</a>, e se algumas tensões são especificadas, como calcular as outras? A chave é que, <em>se o fluido está em equilíbrio</em>, então o somatório de forças é nulo em todas as direções.</p>
 <div class="figure"><span style="display:block;" id="fig:tensoes"></span>
@@ -264,7 +265,7 @@ Figura 2.1: Elemento de fluido sob tensão. Fonte: <span class="citation">(WHITE
 \vec{F}_{\mathrm{g}} = - \rho g \mathrm{d}x \mathrm{d}y \mathrm{d}z \hat{k}
 \]</span></p>
 <p>A pressão que atua sobre a face normal a <span class="math inline">\(z\)</span> em um plano <span class="math inline">\(z\)</span> é <span class="math inline">\(P(z)\mathrm{d}x\mathrm{d}y\)</span> no sentido positivo de <span class="math inline">\(z\)</span>, enquanto que na face a <span class="math inline">\(z + \mathrm{d}z\)</span> é <span class="math inline">\((P + \frac{\mathrm{d} P}{\mathrm{d}z}\mathrm{d}z)\mathrm{d}x\mathrm{d}y\)</span>, no sentido <span class="math inline">\(-z\)</span>. A força no sentido positivo de <span class="math inline">\(z\)</span> é então <span class="math inline">\(-\frac{\mathrm{d} P}{\mathrm{d}z}\mathrm{d}x \mathrm{d}y \mathrm{d}z\hat{k}\)</span></p>
-<p>Nas direções ortogonais a <span class="math inline">\(z\)</span>, na ausência de outros campos, a pressão não pode variar, pois o equilíbrio seria rompido. Na direçAo <span class="math inline">\(z\)</span>, o somatório das forças de pressão e peso deve ser nulo. Logo, um balanço de forças requer:</p>
+<p>Nas direções ortogonais a <span class="math inline">\(z\)</span>, na ausência de outros campos, a pressão não pode variar, pois o equilíbrio seria rompido. Na direção <span class="math inline">\(z\)</span>, o somatório das forças de pressão e peso deve ser nulo. Logo, um balanço de forças requer:</p>
 <p><span class="math display">\[
 \frac{\mathrm{d} P}{\mathrm{d}z} = -\rho g
 \]</span></p>
@@ -282,7 +283,7 @@ Figura 2.1: Elemento de fluido sob tensão. Fonte: <span class="citation">(WHITE
 <span id="cb11-2"><a href="estatica.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="sc">%.2f</span><span class="st"> kg/m3&quot;</span> <span class="op">%</span>(d2,))</span></code></pre></div>
 <pre><code>## 996.47 kg/m3</code></pre>
 <p>o que é uma variação muito pequena de densidade para uma variação muito grande de pressão, e esse aumento de pressão é forçado pelo trabalho de uma bomba. Em aplicações hidrostáticas, o aumento de pressão não vai ser tão grande assim, e portanto é bastante comum usar valores constantes de densidade (geralmente retirados de alguma tabela em condições ambientes como a 20 ˚C).</p>
-<p>Os exemplos anteriores mostram uma grande facilidade atual de engenharia: bibliotecas computacionais como CoolProp <span class="citation">(BELL et al., 2014)</span> que implementam equações de estado modernas e correlações experimentais para muitos fluidos de interesse em engenharia.</p>
+<p>Os exemplos anteriores mostram uma grande facilidade atual de engenharia: bibliotecas computacionais como <a href="https://coolprop.org">CoolProp</a> <span class="citation">(BELL et al., 2014)</span> que implementam equações de estado modernas e correlações experimentais para muitos fluidos de interesse em engenharia.</p>
 </div>
 </div>
 <div id="equação-de-estado" class="section level2 hasAnchor" number="2.2">
@@ -305,15 +306,25 @@ P = \rho R T
 <p><span class="math display">\[
 \frac{\mathrm{d} T_{\mathrm{a}}}{\mathrm{d}z} = \frac{-g}{c_p}
 \]</span></p>
-<p>Se, por ação de transferência de calor entre massas de ar, a temperatura variar mais rapidamente que isso, então o movimento da partícula de fluido é <em>instável</em>, e correntes de convecção se formam - o que é bastante relevante para o cálculo de forças sobre prédios e aviões. Experimentalmente, porém, observa-se que a atmosfera até cerca de 2 km é bastante estável <span class="citation">(KUNDU; COHEN, 2001)</span>.</p>
+<p>Se, por ação de transferência de calor entre massas de ar, a temperatura variar mais rapidamente que isso, então o movimento da partícula de fluido é <em>instável</em>, o que é bastante relevante para o cálculo de forças sobre prédios e aviões. Experimentalmente, porém, observa-se que a atmosfera até cerca de 2 km é bastante estável <span class="citation">(KUNDU; COHEN, 2001)</span>.</p>
 </div>
-<div id="outros-exemplos-de-aplicações" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> Outros exemplos de aplicações<a href="estatica.html#outros-exemplos-de-aplicações" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Além do exemplo anterior de “forças sobre comportas”, os conceitos de hidrostática acabam aparecendo em outras áreas, de onde é importante ao engenheiro conhecer e compreender; nessas situações, sem um movimento forçado do fluido (sem bombas e ventiladores), temos um sistema de baixo custo e baixo consumo de potência, e esta “troca de potência por eficiência” muitas faz sentido termo-econoômico.</p>
+<div id="e-o-tal-cálculo-da-força" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> E o tal cálculo da força?<a href="estatica.html#e-o-tal-cálculo-da-força" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Como falado no início deste ensaio, grandes acidentes em reservatórios são causados porque a força que age sobre as suas paredes é maior que a resistência dos materiais que compõe as paredes. Esses efeitos são agravados por reações químicas (e.g. corrosão) que não só diminuem a espessura das paredes como alteram a micro-estrutura do material, diminuindo intensamente sua resistência.</p>
+<p>Como a se sabe a distribuição de pressão em um fluido estático, a força que este fluido exerce sobre um corpo sólido de área superficial <span class="math inline">\(A_{\mathrm{s}}\)</span> é simplesmente</p>
+<p><span class="math display">\[
+F = \int_{A_{\mathrm{s}}} P \mathrm{d}\sigma
+\]</span></p>
+<p>Para o caso particular de uma superfície plana imersa em um fluido incompressível, pode-se mostrar <span class="citation">(WHITE, 2011)</span> que a esta força é igual à pressão local no seu centróide (centro de massa) multiplicada pela área superficial total. Entretanto, a linha de força <em>não passa</em> pelo seu centróide, mas sim pelo <em>centro de pressão</em>, cuja localização pode ser determinada a partir dos momentos de inércia da superfície <span class="citation">(WHITE, 2011)</span>.</p>
+<p>A explicação acima é um dos grandes paralelos entre a mecânica dos sólidos e a mecânica dos fluidos; na minha opinião, estes cursos deveriam ser bem mais integrados no currículo de engenharia. Por mais que estudemos aplicações envolvendo armazenamento e escoamento de fluidos, nós nunca deixamos de ser engenheiros <em>mecânicos</em>.</p>
+</div>
+<div id="outros-exemplos-de-aplicações" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Outros exemplos de aplicações<a href="estatica.html#outros-exemplos-de-aplicações" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Além do exemplo anterior de “forças sobre comportas”, os conceitos de hidrostática acabam aparecendo em outras áreas; nessas situações, sem um movimento forçado do fluido (ou seja, sem bombas e ventiladores), temos um sistema de baixo custo e baixo consumo de potência, e esta “troca de potência por eficiência” muitas faz sentido termo-econoômico.</p>
 <p>Muitos sistemas térmicos utilizam da <em>convecção natural</em> como mecanismo de troca de calor, pela sua simplicidade, e na convecção natural o movimento do fluido é induzido vela variação de densidade entre regiões mais quentes ou mais frias.</p>
-<p>Alguns motores de combustão interna não muito potentes utilizam também um sistema de resfriamento a água por <em>termosifão</em>, sem bomba, onde a água (na verdade uma solução aquosa) fria da região do radiador exerce pressão sobre a água quente que escoa pelo motor.</p>
+<p>Alguns motores de combustão interna não muito potentes utilizam também um sistema de resfriamento a água por <em>termossifão</em>, sem bomba, onde a água (na verdade uma solução aquosa) fria da região do radiador exerce pressão sobre a água quente que escoa pelo motor.</p>
 <p>Por fim, podemos citar caldeiras de circulação natural, onde a água de alimentação fria exerce pressão sobre a região das paredes d’água, onde o calor de combustão vaporiza a água.</p>
-<p>Estes são exemplos onde equações de estado e pacotes computacionais onde o cálculo preciso da densidade de fluidos - e, em particular, de misturas bifásicas líquido-vapor - acaba permitindo o projeto de sistemas bastante eficientes de resfriamento - um problema permanente na Engenharia Mecânica.</p>
+<p>Estas não são aplicações da estática dos fluidos, rigorosamente falando, já que há escoamento, com seus problemas característicos; mas são exemplos onde o conhecimento da distribuição de pressão, juntamente com equações de estado e pacotes computacionais para preciso da densidade de fluidos - e, em particular, de misturas bifásicas líquido-vapor - acabam permitindo o projeto de sistemas bastante eficientes de resfriamento - um problema permanente na Engenharia Mecânica.</p>
 
 </div>
 </div>

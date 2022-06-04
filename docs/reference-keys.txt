@@ -4,6 +4,7 @@ estatica
 distribuição-de-pressão
 fluido-incompressível
 equação-de-estado
+e-o-tal-cálculo-da-força
 outros-exemplos-de-aplicações
 integral
 cinematica
