@@ -1,4 +1,5 @@
 fig:tensoes
+fig:pump
 introdução
 estatica
 distribuição-de-pressão
@@ -7,6 +8,11 @@ equação-de-estado
 e-o-tal-cálculo-da-força
 outros-exemplos-de-aplicações
 integral
+exemplo-de-formulação-integral-em-mecânica-dos-fluidos
+conservação-da-massa
+conservação-da-quantidade-de-movimento-linear
+conservaçãoda-quantidade-de-movimento-angular
+conservação-da-energia
 cinematica
 euler
 navier
