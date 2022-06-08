@@ -11,7 +11,7 @@ integral
 exemplo-de-formulação-integral-em-mecânica-dos-fluidos
 conservação-da-massa
 conservação-da-quantidade-de-movimento-linear
-conservaçãoda-quantidade-de-movimento-angular
+conservação-da-quantidade-de-movimento-angular
 conservação-da-energia
 cinematica
 euler

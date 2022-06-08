@@ -20,8 +20,75 @@ As formulações de conservação clássicas da Mecânica são feitas em tornos 
 
 ## Conservação da Massa
 
+Para o volume de controle fixo em volta da bomba, a Equação de Conservação da Massa dita [@bib:white6]:
+
+$$
+\int_{\mathrm{VC}} \frac{\partial \rho}{\partial t} \mathrm{d}\mathcal{V} + \int_{\mathrm{SC}}\rho \vec{V}\cdot\vec{n}\mathrm{d}\sigma = 0
+$$
+onde "VC" é o volume de controle (interior), e "SC" é a superfície de controle. O vetor velocidade do fluido é $\vec{V}$ e o vetor unitário normal $\vec{n}$ aponta para fora da SC. 
+
+Para esse tipo de problema, assumimos que o escoamento é incompressível (veja considerações sobre a variação de densidade da água no Cap. \@ref(estatica)) e em regime permanente. Portanto a primeira integral some (não há variações temporais de nenhuma grandeza, mantendo a posição fixa).
+
+Para a segunda, podemos observar que a vazão mássica em uma seção é:
+
+$$
+\dot{m}_i = \int_{A_i}\rho \vec{V}\cdot\vec{n}\mathrm{d}\sigma
+$$
+e portanto a vazão mássica de mantém em 1 e 2. A velocidade média mássica é:
+
+$$
+V_i = \frac{1}{A_i}\int_{A_i}\vec{V}\cdot\vec{n}\mathrm{d}\sigma
+$$
+Portanto:
+
+$$
+-V_1A_1 + V_2A_2 = 0
+$$
+
+considerando que são usados tubos circulares:
+
+$$
+-V_1D_1^2 + V_2D_2^2 = 0
+$$
+O que podemos analisar com essa equação? A tubulação de saída geralmente é maior para suportar as maiores pressões - portanto a velocidade média na saída é um pouco menor.
+
 ## Conservação da Quantidade de Movimento Linear
 
-## Conservaçãoda Quantidade de Movimento Angular
+Para um volume de controle fixo, a Segunda Lei de Newton prescreve que:
+
+$$
+\vec{F}_{\mathrm{res}} = \frac{\mathrm{d} }{\mathrm{d}t} \int_{\mathrm{VC}}\vec{V}\rho\mathrm{d}\mathcal{V} + \int_{\mathrm{SC}}\vec{V}\rho \vec{V}\cdot\vec{n}\mathrm{d}\sigma
+$$
+onde $\vec{F}_{\mathrm{res}}$ é a resultante das forças que agem externamente sobre o volume de controle (como as forças dos parafusos de fixação para manter a bomba fixa no lugar)
+
+Em regime permanente, a primeira integral some. 
+Parece estar contida na Segunda Lei de Newton. Porém, observe que 
+
+$$
+\int_{\mathrm{SC}}\vec{V}\rho \vec{V}\cdot\vec{n}\mathrm{d}\sigma \ne \vec{V}\int_{\mathrm{SC}}\rho \vec{V}\cdot\vec{n}\mathrm{d}\sigma = \dot{m}\vec{V} = \rho {V}^2A_{\mathrm{SC}}
+$$
+porque a velocidade não necessariamente é uniforme ao longo da superfície de controle, mesmo considerando cada seção. Como será apresentado no Cap. \@ref(tubulacoes), o perfil de velocidade é geralmente parabólico ou pelo menos polinomial ao longo de uma seção. Podemos resolver isso adicionando um *fator de correção do fluxo de quantidade de movimento* na forma simplificada na Equação de Conservação da Quantidade de Movimento Linear, aplicada à nossa análise de bomba:
+
+$$
+F_{x} = \dot{m}(\beta_2V_2 - \beta_1V_1)
+$$
+As velocidades são obtidas a partir da conservação da massa, a vazão pode ser obtida em qualquer seção (já que, justamente pela conservação da massa, ela se mantém). O fator de correção é, considerando um escoamento unidimensional incompressível
+
+$$
+\beta_i = \frac{\int_{\mathrm{A_i}}V_x^2\mathrm{d}\sigma}{V^2A_i}
+$$
+e pode ser obtido conhecendo o perfil de velocidade, a partir da análise diferencial (Cap. \@ref(navier)).
+
+Toda a formulação desse capítulo assume que os vetores de velocidade são definidos em termos de um referencial inercial.
+
+## Conservação da Quantidade de Movimento Angular
+
+Defina a origem do sistema de coordenadas em algum ponto, em relação a qual se definem vetores de posição $\vec{r}$. O momento (ou torque) resultante que atua sobre o volume de controle em torno desse ponto é
+
+$$
+\vec{M}_{\mathrm{res}} = \int_{SC}(\vec{r}\times\vec{V})\rho\vec{V}\cdot\vec{n}\mathrm{d}\sigma
+$$
+ou seja: o sistema de fixação da bomba, além de impedir o movimento linear, deve também impedir a rotação da bomba em relação a um eixo. Se a bomba fosse fixada em um eixo por meio de rolamentos que passe pelo seu centro, por exemplo, e o eixo estivesse bem fixado em outra estrutura, a bomba não se deslocaria linearmente ortognalmenta e esse eixo, mas vai girar em relação a ele por causa da diferença de posições e velocidades das tubulações de entrada e saída.
+
 
 ## Conservação da Energia
