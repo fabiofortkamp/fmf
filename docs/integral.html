@@ -23,7 +23,7 @@
 <meta name="author" content="Fábio P. Fortkamp" />
 
 
-<meta name="date" content="2022-06-08" />
+<meta name="date" content="2022-06-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -265,7 +265,7 @@ porque a velocidade não necessariamente é uniforme ao longo da superfície de 
 <p><span class="math display">\[
 F_{x} = \dot{m}(\beta_2V_2 - \beta_1V_1)
 \]</span>
-As velocidades são obtidas a partir da conservação da massa, a vazão pode ser obtida em qualquer seção (já que, justamente pela conservação da massa, ela se mantém). O fator de correção é, considerando um escoamento unidimensional incompressível</p>
+As velocidades são obtidas a partir da conservação da massa, a vazão pode ser obtida em qualquer seção (já que, justamente pela conservação da massa, ela se mantém). O fator de correção é, considerando um escoamento unidimensional incompressível:</p>
 <p><span class="math display">\[
 \beta_i = \frac{\int_{\mathrm{A_i}}V_x^2\mathrm{d}\sigma}{V^2A_i}
 \]</span>
@@ -282,6 +282,36 @@ ou seja: o sistema de fixação da bomba, além de impedir o movimento linear, d
 </div>
 <div id="conservação-da-energia" class="section level2 hasAnchor" number="3.5">
 <h2><span class="header-section-number">3.5</span> Conservação da Energia<a href="integral.html#conservação-da-energia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Finalmente, para a Conservação da Energia, precisamos analisar as interações de calor e trabalho do volume de controle. A bomba consome uma potência <span class="math inline">\(\dot{W}_{\mathrm{p}} &lt; 0\)</span>, que atravessa o volume de controle através de uma árvore girante conectando o motor à bomba. Consideramos que a carcaça da bomba é grossa o suficiente, de maneira que ela não troca calor - e o mesmo vale para as tubulações que aparecem ainda dentro do VC. O ar atmosférico que envolve a bomba e é cortado pela SC está estático e portanto não realiza nenhum tipo de trabalho de cisalhamento. Vamos considerar que a gravidade atua no eixo <span class="math inline">\(-y\)</span>.</p>
+<p>A formulação integral da Primeira Lei da Termodinâmica fica então:</p>
+<p><span class="math display">\[
+-\dot{W}_{\mathrm{p}} = \int_{\mathrm{SC}}\left(h + \frac{1}{2}V^2 + gy\right)\rho\left(\vec{V}\cdot\vec{n}\right)\mathrm{d}\sigma
+\]</span>
+onde <span class="math inline">\(h\)</span> é a entalpia e <span class="math inline">\(g\)</span> é a aceleração da gravidade (preste atenção que, em relação ao Cap. <a href="estatica.html#estatica">2</a>), mudamos o eixo onde a gravidade atua).</p>
+<p>Para esse caso particular que estamos analisando, a superfície de controle só corta duas seções de escoamento 1 e 2, onde o escoamento pode ser considerando unidimensional - mas não uniforme. Em geral, é bastante seguro desprezar as variações de temperatura (e portanto de entalpia) e de energia potencial ao longo de uma seção, mas não de velocidade. De maneira similar ao que fizemos com a quantidade de movimento, definimos um <em>fator de correção da energia cinética</em> como:</p>
+<p><span class="math display">\[
+\alpha = \frac{ \int_{\mathrm{SC}}\frac{1}{2}V^2 \rho\left(\vec{V}\cdot\vec{n}\right)\mathrm{d}\sigma}{\frac{1}{2}V^2\dot{m}}
+\]</span>
+onde, novamente frisa-se, o <span class="math inline">\(V\)</span> fora da integral é a velocidade média mássica. A Conservação da Energia então pode ser expressa como:</p>
+<p><span class="math display">\[
+-\dot{W}_{\mathrm{p}} = \dot{m}\left( \left(h + \alpha\frac{1}{2}V^2 + gy\right)_2 - \left(h + \alpha\frac{1}{2}V^2 + gy\right)_1 \right)
+\]</span>
+Denotamos agora <span class="math inline">\(w_{\mathrm{bomba,ent}} = -\frac{\dot{W}_{\mathrm{p}}}{\dot{m}} &gt; 0\)</span> como o trabalho específico positivo do eixo. A equação acima pode ser rearranjada como:</p>
+<p><span class="math display">\[
+h_1 + \alpha_1\frac{1}{2}V_1^2 + g y_1 + w_{\mathrm{bomba,ent}} = h_2 + \alpha_2\frac{1}{2}V_2^2 + g y_2
+\]</span></p>
+<p>Uma prática usual de engenharia é dividir essa equação por <span class="math inline">\(g\)</span>, e ainda quebrar a definição de entalpia <span class="math inline">\(h = u + \frac{P}{\rho}\)</span>:</p>
+<p><span class="math display">\[
+\frac{P_1}{\rho g} + \frac{u_1}{g} + \alpha_1\frac{1}{2g}V_1^2 + y_1 + \frac{w_{\mathrm{bomba,ent}}}{g} = \frac{P_2}{\rho g} + \frac{u_2}{g} + \alpha_2\frac{1}{2g}V_2^2  + y_2
+\]</span></p>
+<p>onde agora todos os termos têm unidade de altura.</p>
+<p>Juntamos agora os termos de energia interna com o trabalho e definimos a <em>carga</em> da bomba:</p>
+<p><span class="math display">\[
+H_{\mathrm{bomba}} = \frac{w_{\mathrm{bomba,ent}}}{g} + \frac{u_1-u_2}{g}
+\]</span>
+Ou seja: <span class="math inline">\(y\)</span> é a altura literal do escoamento, e ela é ajudada pela <em>altura de pressão</em> <span class="math inline">\(\frac{P}{\rho g}\)</span> e pela altura de velocidade <span class="math inline">\(\frac{1}{2g}\alpha V^2\)</span>. A soma desses três termos é uma <em>altura total</em>, ou <em>carga total</em> do escoamento na entrada; a bomba então adiciona carga, de maneira que o escoamento sai com mais “altura”.</p>
+<p>Uma atividade muito rotineira de engenharia é escolher bombas a partir de catálogos, e para isso é preciso aplicar essas equações vistas aqui para calcular as vazões e a carga - veja <a href="https://www.elektror.com/en/products/industrial-blowers/centrifugal-blowers/">neste catálogo</a> opções de bombas para diferentes aplicações.</p>
+<p>Como máquinas de fluxo em geral são volumétricas (isto é, aspiram um determinado volume baseado na sua geometria), é comum trabalhar com a vazão volumétrica <span class="math inline">\(Q = \frac{\dot{m}}{\rho}\)</span> de fluido que é aspirado. Faço questão de trabalhar o manuseio e a exploração de catálogos nas minhas aulas, e gostaria que meus professores tivesse feito mais disso.</p>
 
 </div>
 </div>
