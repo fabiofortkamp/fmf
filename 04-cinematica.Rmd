@@ -1,1 +1,32 @@
 # Cinemática {#cinematica}
+
+No Cap. \@ref(integral), o *vetor velocidade* apareceu diversas vezes, mas não tivemos tempo de defini-lo. É hora de fazer isso.
+
+## Descrições Lagrangiana e Euleriana
+
+O que é a "velocidade de um ponto"? É a velocidade com que uma *partícula de fluido* (i.e. uma pequena massa fixa de fluido de volume zero, ou seja, um ponto de fluido) que se situa naquele ponto se move no espaço. Por exemplo, se a velocidade num ponto na direção x é 1 m/s, então se essa velocidade for uniforme no espaço em um segundo a partícula vai ter movido 1 m na direção x. Essa é a [**Descrição Lagragiana**](https://pt.wikipedia.org/wiki/Joseph-Louis_Lagrange) do escoamento, que segue trajetórias individuais de partículas - ou seja, num sistema cartesiana, traçamos a curva $(x(t),y(t),z(t))$ de cada particula, como os exercícios de Física Básica que todo estudante de Engenharia deve fazer nas primeiras fases do curso, ou mesmo como o tratamento analítico de Mecânica dos Fluidos [bib:white6] (como falei no Cap. \@ref(estatica), considero que precisamos melhor integrar a Mecânica dos Sólidos da dos Fluidos).
+
+Em Mecânica dos Fluidos, geralmente utilizamos a [**Descrição Euleriana**](https://pt.wikipedia.org/wiki/Leonhard_Euler), que se preocupe com as distribuições espaciais das propriedades. Ou seja, cada ponto do espaço tem o seu vetor velocidade, a sua pressão, a sua temperatura etc, mas não nos preocupamos mais com a trajetória individual de cada partícula. Podemos integrar essas propriedades em volumes e superfícies para calcular forças e potências de equipamentos - foi exatamente o que fizemos no capítulo anterior!
+
+Essas descrições têm impacto em processos de medição de escoamentos. Sensores fixos instalados em uma tubulação medem por exemplo a pressão em um ponto fixo no espaço, e possivelmente conseguem registrar variações temporais - o sensor registra o campo escalar $P(x,y,z,t)$, e portanto segue a Descrição Euleriana. Alguns métodos de visualização, porém, seguem partículas metálicas misturadas ao fluido para reagir com algum sensor eletromagnético - um problema clássico de Descrição Lagrangiana.
+
+
+## Vetores velocidade e aceleração
+
+Em um dado escoamento, portanto, definimos um vetor velocidade euleriano:
+
+$$
+\vec{V}(x,y,z,t) = V_x (x,y,z,t)\hat{i} + V_y (x,y,z,t)\hat{j} + V_z (x,y,z,t)\hat{k}
+$$
+
+onde neste texto vamos usar apenas o sistema cartesiano por brevidade. Os eixos $(x,y,z)$ possuem vetores unitários respectivamente $(\hat{i},\hat{j},\hat{k})$.
+
+O vetor aceleração é:
+
+$$
+\frac{\mathrm{d} \vec{V}}{\mathrm{d}t} = \frac{\mathrm{d} V_x}{\mathrm{d}t} (x,y,z,t)\hat{i} + \frac{\mathrm{d} V_y}{\mathrm{d}t}(x,y,z,t)\hat{j} + \frac{\mathrm{d} V_z}{\mathrm{d}t} (x,y,z,t)\hat{k}
+$$
+Porém, perceba que os componentes têm variações espaciais **e** temporais.
+
+$$
+\frac{\mathrm{d} V_x}{\mathrm{d}t} = \frac{\partial V_x}{\partial x}

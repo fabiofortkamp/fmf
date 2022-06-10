@@ -23,7 +23,7 @@
 <meta name="author" content="Fábio P. Fortkamp" />
 
 
-<meta name="date" content="2022-06-09" />
+<meta name="date" content="2022-06-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -178,7 +178,11 @@ div.csl-indent {
 <li class="chapter" data-level="3.4" data-path="integral.html"><a href="integral.html#conservação-da-quantidade-de-movimento-angular"><i class="fa fa-check"></i><b>3.4</b> Conservação da Quantidade de Movimento Angular</a></li>
 <li class="chapter" data-level="3.5" data-path="integral.html"><a href="integral.html#conservação-da-energia"><i class="fa fa-check"></i><b>3.5</b> Conservação da Energia</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="cinematica.html"><a href="cinematica.html"><i class="fa fa-check"></i><b>4</b> Cinemática</a></li>
+<li class="chapter" data-level="4" data-path="cinematica.html"><a href="cinematica.html"><i class="fa fa-check"></i><b>4</b> Cinemática</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="cinematica.html"><a href="cinematica.html#descrições-lagrangiana-e-euleriana"><i class="fa fa-check"></i><b>4.1</b> Descrições Lagrangiana e Euleriana</a></li>
+<li class="chapter" data-level="4.2" data-path="cinematica.html"><a href="cinematica.html#vetores-velocidade-e-aceleração"><i class="fa fa-check"></i><b>4.2</b> Vetores velocidade e aceleração</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="euler.html"><a href="euler.html"><i class="fa fa-check"></i><b>5</b> Equações de Euler e Bernoulli</a></li>
 <li class="chapter" data-level="6" data-path="navier.html"><a href="navier.html"><i class="fa fa-check"></i><b>6</b> Equações de Navier-Stokes</a></li>
 <li class="chapter" data-level="7" data-path="dimensional.html"><a href="dimensional.html"><i class="fa fa-check"></i><b>7</b> Análise Dimensional e Semelhança</a></li>
@@ -208,7 +212,29 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="cinematica" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">Capítulo 4</span> Cinemática<a href="cinematica.html#cinematica" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>No Cap. <a href="integral.html#integral">3</a>, o <em>vetor velocidade</em> apareceu diversas vezes, mas não tivemos tempo de defini-lo. É hora de fazer isso.</p>
+<div id="descrições-lagrangiana-e-euleriana" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Descrições Lagrangiana e Euleriana<a href="cinematica.html#descrições-lagrangiana-e-euleriana" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>O que é a “velocidade de um ponto”? É a velocidade com que uma <em>partícula de fluido</em> (i.e. uma pequena massa fixa de fluido de volume zero, ou seja, um ponto de fluido) que se situa naquele ponto se move no espaço. Por exemplo, se a velocidade num ponto na direção x é 1 m/s, então se essa velocidade for uniforme no espaço em um segundo a partícula vai ter movido 1 m na direção x. Essa é a <a href="https://pt.wikipedia.org/wiki/Joseph-Louis_Lagrange"><strong>Descrição Lagragiana</strong></a> do escoamento, que segue trajetórias individuais de partículas - ou seja, num sistema cartesiana, traçamos a curva <span class="math inline">\((x(t),y(t),z(t))\)</span> de cada particula, como os exercícios de Física Básica que todo estudante de Engenharia deve fazer nas primeiras fases do curso, ou mesmo como o tratamento analítico de Mecânica dos Fluidos [bib:white6] (como falei no Cap. <a href="estatica.html#estatica">2</a>, considero que precisamos melhor integrar a Mecânica dos Sólidos da dos Fluidos).</p>
+<p>Em Mecânica dos Fluidos, geralmente utilizamos a <a href="https://pt.wikipedia.org/wiki/Leonhard_Euler"><strong>Descrição Euleriana</strong></a>, que se preocupe com as distribuições espaciais das propriedades. Ou seja, cada ponto do espaço tem o seu vetor velocidade, a sua pressão, a sua temperatura etc, mas não nos preocupamos mais com a trajetória individual de cada partícula. Podemos integrar essas propriedades em volumes e superfícies para calcular forças e potências de equipamentos - foi exatamente o que fizemos no capítulo anterior!</p>
+<p>Essas descrições têm impacto em processos de medição de escoamentos. Sensores fixos instalados em uma tubulação medem por exemplo a pressão em um ponto fixo no espaço, e possivelmente conseguem registrar variações temporais - o sensor registra o campo escalar <span class="math inline">\(P(x,y,z,t)\)</span>, e portanto segue a Descrição Euleriana. Alguns métodos de visualização, porém, seguem partículas metálicas misturadas ao fluido para reagir com algum sensor eletromagnético - um problema clássico de Descrição Lagrangiana.</p>
+</div>
+<div id="vetores-velocidade-e-aceleração" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Vetores velocidade e aceleração<a href="cinematica.html#vetores-velocidade-e-aceleração" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Em um dado escoamento, portanto, definimos um vetor velocidade euleriano:</p>
+<p><span class="math display">\[
+\vec{V}(x,y,z,t) = V_x (x,y,z,t)\hat{i} + V_y (x,y,z,t)\hat{j} + V_z (x,y,z,t)\hat{k}
+\]</span></p>
+<p>onde neste texto vamos usar apenas o sistema cartesiano por brevidade. Os eixos <span class="math inline">\((x,y,z)\)</span> possuem vetores unitários respectivamente <span class="math inline">\((\hat{i},\hat{j},\hat{k})\)</span>.</p>
+<p>O vetor aceleração é:</p>
+<p><span class="math display">\[
+\frac{\mathrm{d} \vec{V}}{\mathrm{d}t} = \frac{\mathrm{d} V_x}{\mathrm{d}t} (x,y,z,t)\hat{i} + \frac{\mathrm{d} V_y}{\mathrm{d}t}(x,y,z,t)\hat{j} + \frac{\mathrm{d} V_z}{\mathrm{d}t} (x,y,z,t)\hat{k}
+\]</span>
+Porém, perceba que os componentes têm variações espaciais <strong>e</strong> temporais.</p>
+<p>$$
+= </p>
 
+</div>
 </div>
             </section>
 
