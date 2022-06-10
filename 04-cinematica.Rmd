@@ -1,1 +1,114 @@
 # Cinemática {#cinematica}
+
+No Cap. \@ref(integral), o *vetor velocidade* apareceu diversas vezes, mas não tivemos tempo de defini-lo. É hora de fazer isso.
+
+## Descrições Lagrangiana e Euleriana
+
+O que é a "velocidade de um ponto"? É a velocidade com que uma *partícula de fluido* (i.e. uma pequena massa fixa de fluido de volume zero, ou seja, um ponto de fluido) que se situa naquele ponto se move no espaço. Por exemplo, se a velocidade num ponto na direção x é 1 m/s, então se essa velocidade for uniforme no espaço em um segundo a partícula vai ter movido 1 m na direção x. Essa é a [**Descrição Lagragiana**](https://pt.wikipedia.org/wiki/Joseph-Louis_Lagrange) do escoamento, que segue trajetórias individuais de partículas - ou seja, num sistema cartesiana, traçamos a curva $(x(t),y(t),z(t))$ de cada particula, como os exercícios de Física Básica que todo estudante de Engenharia deve fazer nas primeiras fases do curso, ou mesmo como o tratamento analítico de Mecânica dos Fluidos [@bib:white6] (como falei no Cap. \@ref(estatica), considero que precisamos melhor integrar a Mecânica dos Sólidos da dos Fluidos).
+
+Em Mecânica dos Fluidos, geralmente utilizamos a [**Descrição Euleriana**](https://pt.wikipedia.org/wiki/Leonhard_Euler), que se preocupe com as distribuições espaciais das propriedades. Ou seja, cada ponto do espaço tem o seu vetor velocidade, a sua pressão, a sua temperatura etc, mas não nos preocupamos mais com a trajetória individual de cada partícula. Podemos integrar essas propriedades em volumes e superfícies para calcular forças e potências de equipamentos - foi exatamente o que fizemos no capítulo anterior!
+
+Essas descrições têm impacto em processos de medição de escoamentos. Sensores fixos instalados em uma tubulação medem por exemplo a pressão em um ponto fixo no espaço, e possivelmente conseguem registrar variações temporais - o sensor registra o campo escalar $P(x,y,z,t)$, e portanto segue a Descrição Euleriana. Alguns métodos de visualização, porém, seguem partículas metálicas misturadas ao fluido para reagir com algum sensor eletromagnético - um problema clássico de Descrição Lagrangiana.
+
+
+## Vetores velocidade e aceleração
+
+Em um dado escoamento, portanto, definimos um vetor velocidade euleriano:
+
+$$
+\vec{V}(x,y,z,t) = V_x (x,y,z,t)\hat{i} + V_y (x,y,z,t)\hat{j} + V_z (x,y,z,t)\hat{k}
+$$
+
+onde neste texto vamos usar apenas o sistema cartesiano por brevidade. Os eixos $(x,y,z)$ possuem vetores unitários respectivamente $(\hat{i},\hat{j},\hat{k})$. A explicação a seguir foi adapatada de [@bib:white6].
+
+O vetor aceleração é:
+
+$$
+\frac{\mathrm{d} \vec{V}}{\mathrm{d}t} = \frac{\mathrm{d} V_x}{\mathrm{d}t} (x,y,z,t)\hat{i} + \frac{\mathrm{d} V_y}{\mathrm{d}t}(x,y,z,t)\hat{j} + \frac{\mathrm{d} V_z}{\mathrm{d}t} (x,y,z,t)\hat{k}
+$$
+
+Porém, perceba que os componentes têm variações espaciais **e** temporais. Aqui precisamos considerar também a Descrição Lagrangiana, uma vez que *há* um movimento de fluido, mesmo que não sigamos uma partícula em específico. Por exemplo, para a primeira componente:
+
+$$
+\frac{\mathrm{d} V_x}{\mathrm{d}t} = \frac{\partial V_x}{\partial t} + \frac{\partial V_x}{\partial x}\frac{\mathrm{d} x}{\mathrm{d}t} + \frac{\partial V_x}{\partial y}\frac{\mathrm{d} y}{\mathrm{d}t} + \frac{\partial V_x}{\partial z}\frac{\mathrm{d} z}{\mathrm{d}t}
+$$
+Porém,
+
+$$
+\frac{\mathrm{d} x}{\mathrm{d}t} = V_x
+$$
+
+E similarmente para outros componentes. As derivadas parciais na equação anterior são os componentes do *gradiente* de $V_x$, que é um campo escalar. Portanto, usando notação vetorial, escrevemos:
+
+$$
+\frac{\mathrm{d} V_x}{\mathrm{d}t} = \frac{\partial V_x}{\partial t} + \vec{V}\cdot\nabla V_x
+$$
+
+Portanto, escrevemos o vetor aceleração como:
+
+$$
+\frac{\mathrm{d} \vec{V}}{\mathrm{d}t} = \frac{\partial \vec{V}}{\partial t} + \vec{V}\cdot\nabla \vec{V}
+$$
+
+onde podemos definir um operador
+
+$$
+\vec{V}\cdot\nabla = V_x\frac{\partial }{\partial x} + V_y\frac{\partial }{\partial y} + V_z\frac{\partial }{\partial z}
+$$
+
+Assim, a aceleração *total* contém duas partes: a aceleração local (com posição fixa) e a aceleração convectiva. É apenas o primeiro termo que é nulo em regime permanente. Num campo de escoamento que é não-uniforme espacialmente (como o escoamento dentro de um tubo), mas em regime permanente (essa distribuição espacial não muda com o tempo), uma partícula que se move no espaço vai experimentar uma aceleração (mudanças de velocidade) devido a essa passagem por locais com diferentes velocidades locais.
+
+Essa derivada total da velocidade (que pode ser aplicada a quaisquer campos escalares ou vetoriais) é chamada de derivada material ou substantiva, e às vezes recebe um símbolo especial. Como a explicação acima deixa claro, é apenas uma derivada total no tempo de grandezas que variam no tempo, então gosto de chamar de derivada total e usar o símbolo padrão de derivada.
+
+## Equação da Continuidade
+
+Se aplicarmos a Equação da Conservação da Massa do Cap. \@ref(integral) a um volume de controle cartesiano pequeno, e fizermos esse volume tender a zero, chegamos no início da formulação da análise diferencial de fluidos (cf. discussão no início do capítulo anterior): a forma diferencial da conservação da massa:
+
+$$
+\frac{\partial \rho}{\partial t} + \nabla \cdot \left(\rho \vec{V}\right) = 0
+$$
+
+Essa equação é conhecida como *continuidade* porque se baseia apenas na densidade e velocidade serem funções contínuas [@bib:white6].
+
+Se o escoamento for incompressível (independente do regime ser permanente ou não), a equação da continuidade se reduz a:
+
+$$
+\nabla \cdot \vec{V} = 0
+$$
+
+## Linhas de corrente
+
+A última equação apresenta uma propriedade interessante para o caso bidimensional e incompressível: se existir no escoamento uma função *corrente* $\psi(x,y)$ tal que:
+
+$$
+V_x = \frac{\partial \psi}{\partial y}
+$$
+
+$$
+V_y = -\frac{\partial \psi}{\partial x}
+$$
+
+então a continuidade é automaticamente satisfeita.
+
+Escoamentos bidimensinais são muito facilmente estudados e melhor compreendido quando estudantes desenham *linhas de corrente*: linhas sempre tangentes ao vetor velocidade. Isto é, ao longo da curva de linha de corrente, a seguinte relação vale em todos os pontos $(x,y)$ dessa curva:
+
+$$
+\frac{V_y(x,y)}{V_x(x,y)} = \frac{\mathrm{d} y}{\mathrm{d}x}(x,y)
+$$
+ou
+
+$$
+V_x\mathrm{d}y - V_y\mathrm{d}x = 0
+$$
+
+ou
+
+$$
+\frac{\partial \psi}{\partial y}\mathrm{d}y + \frac{\partial \psi}{\partial s}\mathrm{d}x = 0
+$$
+
+O lado esquerdo é o *diferencial total* da função corrente, que portanto é zero em uma linha de corrente. Logo, linhas de corrente são linhas de $\psi$ constante.
+
+Para um escoamento bimensional incompressível em regime permanente, as linhas de corrente representam as trajetórias das partículas de fluido, e portanto são muito úteis para ganhar uma percepção maior do que está acontecendo. Em particular, o fluido não pode atravessar uma linha de corrente.
+
+Em minha experiência como professor, observo que esses conceitos de cinemática não são nada fáceis, pois há muita variações acontecendo - daí, ainda mais, saliento a importância de fazer desenhos e esboços. Deveria a Engenharia Mecânica ter menos ênfase em "Desenho Técnico" e mais ênfase geral em *design*?
