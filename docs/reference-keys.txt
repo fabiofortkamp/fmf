@@ -12,13 +12,15 @@ exemplo-de-formulação-integral-em-mecânica-dos-fluidos
 conservação-da-massa
 conservação-da-quantidade-de-movimento-linear
 conservação-da-quantidade-de-movimento-angular
-conservação-da-energia
+energia
 cinematica
 descrições-lagrangiana-e-euleriana
 vetores-velocidade-e-aceleração
 equação-da-continuidade
-linhas-de-corrente
+corrente
 euler
+equação-de-bernoulli-e-equação-integral-da-energia
+equação-de-euler
 navier
 dimensional
 tubulacoes

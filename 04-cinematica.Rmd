@@ -78,7 +78,7 @@ $$
 \nabla \cdot \vec{V} = 0
 $$
 
-## Linhas de corrente
+## Linhas de corrente {#corrente}
 
 A última equação apresenta uma propriedade interessante para o caso bidimensional e incompressível: se existir no escoamento uma função *corrente* $\psi(x,y)$ tal que:
 

@@ -1,1 +1,29 @@
 # Equações de Euler e Bernoulli {#euler}
+
+As Equações de Euler e Bernoulli são artefatos típicos de Engenharia: maneiras de resolver problemas práticos de escoamento, notadamente calcular relações entre pressão e vazão, com o mínimo de trabalho possível - mas que requer à engenheira *conhecer* os erros envolvidos e decidir se eles valem a pena diante dos custos totais da análise.
+
+## Equação de Bernoulli e Equação Integral da Energia
+
+Começamos com a forma integral da Equação da Energia (veja Seção \@ref(energia)) na forma de *cargas* (energia por unidade de massa por unidade da aceleração da gravidade), mas agora imaginamos um volume de controle  de área de escoamento infinitesimal em volta de uma única linha de corrente (veja Seção \@ref(corrente)). Essa linha de corrente está numa região onde não existe nenhuma forma de transferência de calor ou trabalho (incluindo efeitos viscosos). Vamos considerar o caso de escoamento incompressível em regime permanente - a aplicação mais comum da Equação de Bernoulli, Entre dois pontos dessa linha, então, a soma
+
+$$
+\frac{P}{\rho g} + \frac{V_2}{2g} + z = h_0 = \text{constante}
+$$
+
+onde observe que a voltamos a colocar o eixo $-z$ na direção e sentido da gravidade. Esta é a Equação de Bernoulli.
+
+A grande limitação é a hipótese de escoamento sem atrito, o que não é realista em muitas situações. Mas ela pode ser aplicada se o engenheiro perceber que na região de interesse o atrito não domina. Casos muito típicos de aplicação da Equação de Bernoulli é o cálculo da vazão entrando e saindo de reservatórios de fluidos (como o abastecimento de óleo combustível a partir de um tanque central para uma fornalha). Sabendo a altura do nível de óleo, e estando essa interface à pressão atmosférica, e sabendo a altura do bocal de saída, bem como medindo a sua pressão, é possível calcular a vazão de saída (instrumentos de medição de vazão em geral são mais intrusivos que medidores de pressão).
+
+A Equação de Bernoulli *pode* ser modificada para incluir outros efeitos. Por exemplo, a *carga* de uma bomba *adiociona* um valor à cosntante $h_0$. Perdas por atrito ou calor *diminuem*. A Equação como colocada acima continua válida (com essas constantes modificadas) em regiões bem a montante ou a jusante desses efeitos.
+
+## Equação de Euler
+
+Os nomes de Euler e [Bernoulli](https://pt.wikipedia.org/wiki/Daniel_Bernoulli) são muito associados entre si e ao conceito de *escoamento ideal* (VER REF SCHILICHTING), e de fato foi Euler quem formulou precisamente a Equação de Bernoulli (a partir de ideias deste) [@bib:white6]. O que chamamos de *Equação de Euler* em mecânica dos fluidos é uma forma diferencial da Equação de Bernoulli.
+
+Pegamos um volume de controle cartesiano, e aplicamos a Segunda Lei de Newton; as forças envolvidas, assumindo ausência de atrito, são apenas a pressão e a gravidade. Fazendo o volume tender a zero, chegamos a:
+
+$$
+\rho \vec{g} - \nabla P = \rho \frac{\mathrm{d} \vec{V}}{\mathrm{d}t}
+$$
+
+Em muitos trocadores de calor, é necessário projetar muito bem *as regiões de entrada*. Como falado anteriormente, normalmente o fluido vem de algum reservatório e entra no trocador para ser aquecido (e.g. para reduzir a viscosidade do óleo) ou resfriado (para poder ser descartado na atmosfera ou em alguma corrente de água com segurança). No núcleo do trocador, obviamente as paredes do tubo induzem efeitos viscosos e a Equação de Euler não vale; porém, nos acomplamentos de entrada, a Equação de Euler pode ser implementada em Softwares de Dinâmica dos Fluidos Computacionais CFD para dimensionar, com simulações muito rápidas (já que não efeitos viscosos), a geometria correta para garantir que a distribuição de velocidades seja adequada e que não haja zona mortas (onde a velocidade é muito baixa). As equações do movimento completas pode ser usadas então nas ηpas finais de refino. A região de entrada de regeneradores usados em refrigeração magnética, por exemplo, têm impacto considerável na máquina [@bib:trevizoli18-influen]!

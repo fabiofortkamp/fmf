@@ -91,7 +91,7 @@ $$
 ou seja: o sistema de fixação da bomba, além de impedir o movimento linear, deve também impedir a rotação da bomba em relação a um eixo. Se a bomba fosse fixada em um eixo por meio de rolamentos que passe pelo seu centro, por exemplo, e o eixo estivesse bem fixado em outra estrutura, a bomba não se deslocaria linearmente ortognalmenta e esse eixo, mas vai girar em relação a ele por causa da diferença de posições e velocidades das tubulações de entrada e saída.
 
 
-## Conservação da Energia
+## Conservação da Energia {#energia}
 
 Finalmente, para a Conservação da Energia, precisamos analisar as interações de calor e trabalho do volume de controle. A bomba consome uma potência $\dot{W}_{\mathrm{p}} < 0$, que atravessa o volume de controle através de uma árvore girante conectando o motor à bomba. Consideramos que a carcaça da bomba é grossa o suficiente, de maneira que ela não troca calor - e o mesmo vale para as tubulações que aparecem ainda dentro do VC. O ar atmosférico que envolve a bomba e é cortado pela SC está estático e portanto não realiza nenhum tipo de trabalho de cisalhamento. Vamos considerar que a gravidade atua no eixo $-y$. 
 
