@@ -1,1 +1,41 @@
 # Escoamento em Tubulações {#tubulacoes}
+
+No ambiente de um curso de Engenharia Mecânica existe uma divisão, e uma disputa, entre *áreas* do curso, geramente identificadas como Fabricação, Sistemas Termo-fluidos, Projeto, Análise Estrutural, Vibrações e Acústica. Supostamente, o estudante deve se especializar em uma área e, embora não deva, acaba esquecendo dos conceitos das outras áreas. Gostaria de não ser assim, mas o que são modos de vibração mesmo? 
+
+*Independente da sua área*, porém, arrisco dizer que este capítulo é o mais relevante para a maioria dos engenheiros em atividade entre todos. Escoamentos de fluidos em tubulações são simplesmente prevalentes demais na engenharia. A especialista em fabricação que está analisando um processo de corte por jato d'água precisa entender que a pressão com que a água sai do bocal não é a mesma de saída da bomba, pois o fluido perde pressão ao escoar em dutos entre a bomba e o bocal. O engenheiro automobilístico que está analisando as vibrações das mangueiras do sistema de arrefecimento precisa estimar a velocidade do fluido dentro da mangueira. Para os colegas que de fato são "das térmicas", analisar o escoamento em tubulações (de trocadores de calor, de transporte de vapor, de alimentação de óleo em caldeiras) é praticamente uma atividade cotidiana.
+
+O que há tanto para se estudar sobre escoamento em tubulações?
+
+## Atrito
+
+O principal fenômeno é o *atrito* viscoso que ocorre quando qualquer fluido, por menos viscoso que seja, adere por forças eletromagnéticas à parede do duto; na posição mais longe da parede, i.e. no centro do duto, a velocidade é não-nula para justamente manter o fluido escoando, e esse gradiente de velocidades gera tensão cisalhantes. *Justamente para manter o fluido escoando*, um *gradiente de pressão* precisa ser aplicado para vencer o atrito. Em escoamento de fluidos, ao contrário de fluidos estáticos conforme tratado no Cap. \@ref(estatica), os efeitos gravitacionais são desprezíveis frente ao balanço entre pressão e atrito, de maneira que neste texto vamos considerar apenas tubulações horizontais. Vamos também considerar escoamentos incompressíveis (considerações onde isto não é válido são deixadas para o Cap. \@ref(compressivel)).
+
+O gradiente de pressão que precisa então ser aplicado costuma ser adimensioanalizado (cf. Cap. \@ref(dimensional)) através do *fator de atrito de Darcy-Weisbach*:
+
+$$
+\Delta P = f \frac{L}{D_{\mathrm{h}}}\frac{\rho V^2}{2}
+$$
+
+onde $D_{\mathrm{h}} = \frac{4 A_{\mathrm{c}}}{P_{\mathrm{er}}}$ é o diâmetro hidráulico ($A_{\mathrm{c}}$ é a área de seção transversal e $P_{\mathrm{er}}$ é o perímetro de uma seção de escoamento) e $V$ é a velocidade média mássica (cf. Cap. \@ref(integral)). 
+
+Do que depende o fator de atrito? Experimentos mostram que ele depende do *regime de escoamento* e da *rugosidade* do material do tubo.
+
+## Transição e turbulência
+
+Quando um fluido escoa com uma determinada vazão $\dot{m}$ constante em um tubo de diâmetro hidráulico $D_{\mathrm{h}}$, sendo $\mu$ a sua viscosidade absoluta, o *número de Reynolds* é:
+
+$$
+\mathrm{Re}_{\mathrm{D_{\mathrm{h}}}} = \frac{4 \dot{m}}{\pi D_{\mathrm{h}} \mu}
+$$
+Para $\mathrm{Re}_{\mathrm{D_{\mathrm{h}}}} < 2300$, experimentalmente se observa que o escoamento é suave: as linhas de corrente são paralelas. Para números de Reynolds maiores, o escoamento se torna *turbulento*, com vórtices turbulento se formando e flutuações locais aletatórias da velocidade.
+
+A Engenharia de Tubulações é a otimização da turbulência. Você não necessariamente quer evitar a turbulência, porque isso usualmente requer vazões baixas demais para terem utilidade (e.g. um reservatório demora uma eternidade para ser preenchido). O engenheiro deve se basear em dados experimentais para projetar tubulações que, mesmo com um escoamento turbulento, minimize a geração de entropia (e portanto a potência perdida [@bib:egm-bejan]) devido à perda de carga. Isso requer uma *otimização* propriamente dita porque baixas perdas de carga são conseguidas com maiores diâmetros, mas isso aumenta o custo e o peso das tubulações.
+
+Uma área atuante da Engenharia é a *modelagem* da turbulência, de maneira a prever com maior precisão a perda de pressão - principalmente em geometrias que estão ficando mais complexas.
+
+## Novas fronteiras em geometrias de tubulações
+
+Em aplicações de tubulações de trocadores de calor, estamos testemunhando um aumento contínuo da demanda por mais e mais troca de calor em sistemas cada vez mais minituarizados. Isso requer geometrias otimizadas obtidas com manufatura aditiva. Porém, o que se observa é que o que aumenta a transferência de calor em geral requer um aumento no *custo* a pagar, que é a perda por atrito. Em particular, geometrias de trocadores inspiradas pela natureza parecem ser uma das grandes novas fronteiras de engenharia [@bib:navickaite19-natur-inspir-flow-patter-activ].
+
+Existe uma negligência na utilização da Segunda Lei da Termodinâmica em Mecânica dos Fluidos. É uma pena, pois esta ferramenta é o que melhor quantifica as perdas energéticas em tubulações [@bib:bejan95-convec-heat-trans] permite análises muito interessantes de trocadores de calor cada vez mais otimizados [@bib:egm].
+

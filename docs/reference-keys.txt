@@ -24,6 +24,9 @@ equação-de-euler
 navier
 dimensional
 tubulacoes
+atrito
+transição-e-turbulência
+novas-fronteiras-em-geometrias-de-tubulações
 camada
 arrasto
 compressivel

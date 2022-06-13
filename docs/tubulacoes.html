@@ -23,7 +23,7 @@
 <meta name="author" content="Fábio P. Fortkamp" />
 
 
-<meta name="date" content="2022-06-11" />
+<meta name="date" content="2022-06-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -192,7 +192,12 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="6" data-path="navier.html"><a href="navier.html"><i class="fa fa-check"></i><b>6</b> Equações de Navier-Stokes</a></li>
 <li class="chapter" data-level="7" data-path="dimensional.html"><a href="dimensional.html"><i class="fa fa-check"></i><b>7</b> Análise Dimensional e Semelhança</a></li>
-<li class="chapter" data-level="8" data-path="tubulacoes.html"><a href="tubulacoes.html"><i class="fa fa-check"></i><b>8</b> Escoamento em Tubulações</a></li>
+<li class="chapter" data-level="8" data-path="tubulacoes.html"><a href="tubulacoes.html"><i class="fa fa-check"></i><b>8</b> Escoamento em Tubulações</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="tubulacoes.html"><a href="tubulacoes.html#atrito"><i class="fa fa-check"></i><b>8.1</b> Atrito</a></li>
+<li class="chapter" data-level="8.2" data-path="tubulacoes.html"><a href="tubulacoes.html#transição-e-turbulência"><i class="fa fa-check"></i><b>8.2</b> Transição e turbulência</a></li>
+<li class="chapter" data-level="8.3" data-path="tubulacoes.html"><a href="tubulacoes.html#novas-fronteiras-em-geometrias-de-tubulações"><i class="fa fa-check"></i><b>8.3</b> Novas fronteiras em geometrias de tubulações</a></li>
+</ul></li>
 <li class="chapter" data-level="9" data-path="camada.html"><a href="camada.html"><i class="fa fa-check"></i><b>9</b> Camada-Limite</a></li>
 <li class="chapter" data-level="10" data-path="arrasto.html"><a href="arrasto.html"><i class="fa fa-check"></i><b>10</b> Arrasto e Sustentação</a></li>
 <li class="chapter" data-level="11" data-path="compressivel.html"><a href="compressivel.html"><i class="fa fa-check"></i><b>11</b> Escoamento Compressível</a></li>
@@ -218,7 +223,35 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="tubulacoes" class="section level1 hasAnchor" number="8">
 <h1><span class="header-section-number">Capítulo 8</span> Escoamento em Tubulações<a href="tubulacoes.html#tubulacoes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>No ambiente de um curso de Engenharia Mecânica existe uma divisão, e uma disputa, entre <em>áreas</em> do curso, geramente identificadas como Fabricação, Sistemas Termo-fluidos, Projeto, Análise Estrutural, Vibrações e Acústica. Supostamente, o estudante deve se especializar em uma área e, embora não deva, acaba esquecendo dos conceitos das outras áreas. Gostaria de não ser assim, mas o que são modos de vibração mesmo?</p>
+<p><em>Independente da sua área</em>, porém, arrisco dizer que este capítulo é o mais relevante para a maioria dos engenheiros em atividade entre todos. Escoamentos de fluidos em tubulações são simplesmente prevalentes demais na engenharia. A especialista em fabricação que está analisando um processo de corte por jato d’água precisa entender que a pressão com que a água sai do bocal não é a mesma de saída da bomba, pois o fluido perde pressão ao escoar em dutos entre a bomba e o bocal. O engenheiro automobilístico que está analisando as vibrações das mangueiras do sistema de arrefecimento precisa estimar a velocidade do fluido dentro da mangueira. Para os colegas que de fato são “das térmicas”, analisar o escoamento em tubulações (de trocadores de calor, de transporte de vapor, de alimentação de óleo em caldeiras) é praticamente uma atividade cotidiana.</p>
+<p>O que há tanto para se estudar sobre escoamento em tubulações?</p>
+<div id="atrito" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Atrito<a href="tubulacoes.html#atrito" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>O principal fenômeno é o <em>atrito</em> viscoso que ocorre quando qualquer fluido, por menos viscoso que seja, adere por forças eletromagnéticas à parede do duto; na posição mais longe da parede, i.e. no centro do duto, a velocidade é não-nula para justamente manter o fluido escoando, e esse gradiente de velocidades gera tensão cisalhantes. <em>Justamente para manter o fluido escoando</em>, um <em>gradiente de pressão</em> precisa ser aplicado para vencer o atrito. Em escoamento de fluidos, ao contrário de fluidos estáticos conforme tratado no Cap. <a href="estatica.html#estatica">2</a>, os efeitos gravitacionais são desprezíveis frente ao balanço entre pressão e atrito, de maneira que neste texto vamos considerar apenas tubulações horizontais. Vamos também considerar escoamentos incompressíveis (considerações onde isto não é válido são deixadas para o Cap. <a href="compressivel.html#compressivel">11</a>).</p>
+<p>O gradiente de pressão que precisa então ser aplicado costuma ser adimensioanalizado (cf. Cap. <a href="dimensional.html#dimensional">7</a>) através do <em>fator de atrito de Darcy-Weisbach</em>:</p>
+<p><span class="math display">\[
+\Delta P = f \frac{L}{D_{\mathrm{h}}}\frac{\rho V^2}{2}
+\]</span></p>
+<p>onde <span class="math inline">\(D_{\mathrm{h}} = \frac{4 A_{\mathrm{c}}}{P_{\mathrm{er}}}\)</span> é o diâmetro hidráulico (<span class="math inline">\(A_{\mathrm{c}}\)</span> é a área de seção transversal e <span class="math inline">\(P_{\mathrm{er}}\)</span> é o perímetro de uma seção de escoamento) e <span class="math inline">\(V\)</span> é a velocidade média mássica (cf. Cap. <a href="integral.html#integral">3</a>).</p>
+<p>Do que depende o fator de atrito? Experimentos mostram que ele depende do <em>regime de escoamento</em> e da <em>rugosidade</em> do material do tubo.</p>
+</div>
+<div id="transição-e-turbulência" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Transição e turbulência<a href="tubulacoes.html#transição-e-turbulência" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Quando um fluido escoa com uma determinada vazão <span class="math inline">\(\dot{m}\)</span> constante em um tubo de diâmetro hidráulico <span class="math inline">\(D_{\mathrm{h}}\)</span>, sendo <span class="math inline">\(\mu\)</span> a sua viscosidade absoluta, o <em>número de Reynolds</em> é:</p>
+<p><span class="math display">\[
+\mathrm{Re}_{\mathrm{D_{\mathrm{h}}}} = \frac{4 \dot{m}}{\pi D_{\mathrm{h}} \mu}
+\]</span>
+Para <span class="math inline">\(\mathrm{Re}_{\mathrm{D_{\mathrm{h}}}} &lt; 2300\)</span>, experimentalmente se observa que o escoamento é suave: as linhas de corrente são paralelas. Para números de Reynolds maiores, o escoamento se torna <em>turbulento</em>, com vórtices turbulento se formando e flutuações locais aletatórias da velocidade.</p>
+<p>A Engenharia de Tubulações é a otimização da turbulência. Você não necessariamente quer evitar a turbulência, porque isso usualmente requer vazões baixas demais para terem utilidade (e.g. um reservatório demora uma eternidade para ser preenchido). O engenheiro deve se basear em dados experimentais para projetar tubulações que, mesmo com um escoamento turbulento, minimize a geração de entropia (e portanto a potência perdida <span class="citation">(BEJAN, 1996)</span>) devido à perda de carga. Isso requer uma <em>otimização</em> propriamente dita porque baixas perdas de carga são conseguidas com maiores diâmetros, mas isso aumenta o custo e o peso das tubulações.</p>
+<p>Uma área atuante da Engenharia é a <em>modelagem</em> da turbulência, de maneira a prever com maior precisão a perda de pressão - principalmente em geometrias que estão ficando mais complexas.</p>
+</div>
+<div id="novas-fronteiras-em-geometrias-de-tubulações" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Novas fronteiras em geometrias de tubulações<a href="tubulacoes.html#novas-fronteiras-em-geometrias-de-tubulações" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Em aplicações de tubulações de trocadores de calor, estamos testemunhando um aumento contínuo da demanda por mais e mais troca de calor em sistemas cada vez mais minituarizados. Isso requer geometrias otimizadas obtidas com manufatura aditiva. Porém, o que se observa é que o que aumenta a transferência de calor em geral requer um aumento no <em>custo</em> a pagar, que é a perda por atrito. Em particular, geometrias de trocadores inspiradas pela natureza parecem ser uma das grandes novas fronteiras de engenharia <span class="citation">(NAVICKAITÉ; BAHL; ENGELBRECHT, 2019)</span>.</p>
+<p>Existe uma negligência na utilização da Segunda Lei da Termodinâmica em Mecânica dos Fluidos. É uma pena, pois esta ferramenta é o que melhor quantifica as perdas energéticas em tubulações <span class="citation">(BEJAN, 1995)</span> permite análises muito interessantes de trocadores de calor cada vez mais otimizados <span class="citation">(TREVIZOLI; BARBOSA, 2015)</span>.</p>
 
+</div>
 </div>
             </section>
 
