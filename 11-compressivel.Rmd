@@ -1,1 +1,44 @@
 # Escoamento Compressível {#compressivel}
+
+Tubos capilares são usados em sistemas de refrigeração por compressão mecânica de vapor de baixa capacidade (até o nível de um ar-condicionado residencial), consistindo em tubos de cerca de 0,5-2 mm de diâmetro interno e cerca de 5 m de comprimento [@bib:DELARA202037]. O seu propósito é reduzir a pressão do fluido refrigerante entre o condensador e o evaporador, e ao fazer isso controlar a vazão de fluido fornecida pelo compressor para atingir o valor de vazão compatível com a capacidade de refrigeração desejada.
+
+Ao simular e projetar um tubo capilar, ocorre um fenômeno interessante: se você considera a pressão de condensação como fixa, quando maior o tubo capilar, maior a queda de pressão (cf. Cap. \@ref(tubulacoes)), e portanto maior a vazão que pode passar pelo tubo (pois maior o potencial para escoaamento) - mas só até certo ponto. A partir de um certo ponto, aumentar o tubo capilar para reduzir ainda mais a pressão na saída não tem efeito na vazão, e o escoamento fica *blocado*. A blocagem limita a eficiência de sistemas de refrigeração [@bib:stoecker]. Por que isso acontece?
+
+Outro exemplo onde a eficiência de um sistema é limitada pela vazão de fluido: motores de combustão interna. Quanto mais ar é possível ao motor succionar, mais combustível pode ser queimado sem aumentar a taxa de emissões de poluentes [@bib:Heywood1988], e portanto mais energia é liberada pelo motor. A grande restrição para o escoamento de ar é a válvula de admissão, onde o ar encontra a menor área de passagem (principalmente quando ela não está totalmente aberta), e portanto é ali que a velocidade é a maior. Experimentos mostram que, se essa velocidade é *alta demais* (o que ocorre quando a válvula é sub-dimensionada), a quantidade de ar que entra no motor na verdade diminui. Por que isso acontece?
+
+## Velocidades sônicas
+
+Em ambos os casos acima, a velocidade de referência no sistema, geralmente a máxima velocidade, ficou muito próxima da *velocidade do som*. A velocidade do som é a velocidade de uma onda de pressão de magnitude infinitesimal que se propaga em um fluido estático [@bib:cengel]. Em um fluido parado com velocidade $V = 0$ e propriedades ($P,\rho,h$), à medida que a onda passa o fluido se acelera a $\mathrm{d}V \ne 0$ e as propriedades são perturbadas. Esse processo é geralmente modelado como isentrópico (adiabático e reversível). Logo, a exigência de conservação da massa, energia e entropia à medida que o fluido se desloca pela onda requer que a velocidade do som satisfaça:
+
+$$
+c^2 = \left(\frac{\partial P}{\partial \rho}\right)_s
+$$
+
+O que, usando propriedades termodinâmicas, pode ser re-escrito como:
+
+$$
+c^2 = k\left(\frac{\partial P}{\partial \rho}\right)_T
+$$
+onde $k$ é a razão de calores específicos.
+
+*Especificamente*, para gases ideais
+
+$$
+c = \sqrt{kRT}
+$$
+onde $R$ é a constante do gás. A velocidade do som pode ser calculada para outros fluidos com base na sua equação de estado, e em geral depende da pressão. Por exemplo:
+
+``` {python}
+from CoolProp.CoolProp import PropsSI
+PropsSI("A","T",300,"P",1e5,"R134a")
+```
+
+Seja um fluido escoando em um ponto com velocidade $V$, e com temperatura $T$ e pressão $P$, de maneira que a sua velocidade do som seja $c$. O número de Mach do escoamento é:
+
+$$
+\mathrm{Ma} = \frac{V}{c}
+$$
+
+Nos exemplos anteriores, é o número de Mach que determina as restrições. O escoamento se torna blocado em tubos capilares quando Mach se torna unitário, e reduções na capacidade de enchimento de ar de motores ocorrem quando $\mathrm{Ma} > \frac{1}{2}$ [@bib:Brunetti2012a].
+
+## Modificações de densidade

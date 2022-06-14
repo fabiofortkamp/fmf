@@ -30,4 +30,6 @@ novas-fronteiras-em-geometrias-de-tubulações
 camada
 arrasto
 compressivel
+velocidades-sônicas
+modificações-de-densidade
 referências
