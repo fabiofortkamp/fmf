@@ -22,6 +22,11 @@ euler
 equação-de-bernoulli-e-equação-integral-da-energia
 equação-de-euler
 navier
+a-equação-de-cauchy-e-o-tensor-tensão
+a-quebra-do-tensor-tensão
+fluido-newtoniano
+soluções-numéricas
+novos-desenvolvimentos
 dimensional
 tubulacoes
 atrito

@@ -1,1 +1,70 @@
 # Equações de Navier-Stokes {#navier}
+
+Arrisco dizer que todo estudante de Engenharia Mecânica lembra da sua primeira introdução ao nome deste Capítulo, que geralmente vem precedido do adjetivo "as famosas". Eu pelo menos me lembro da aula, do professor, e de não entender muita coisa.
+
+Não há grande mistério: as Equações de Navier-Stokes são uma forma da Segunda Lei de Newton aplicada a um fluido newtoniano incompressível em escoamento. Possivelmente a sua característica mais famosa é que não há soluções gerais, e apenas soluções muito simplificadas são conhecidas [@bib:bejan95-convec-heat-trans]. Há [um prêmio de USD 1 000 000](https://www.claymath.org/millennium-problems/navier–stokes-equation) para quem decifrar os mistérios matemáticos dessas equações - embora, devo dizer, isto provavelmente está fora da alçada dos engenheiros e é um sonho dos melhores matemáticos. Nós, humildemente, precisamos aprender a trabalhar com as soluções que temos, analíticas e numéricas.
+
+## A Equação de Cauchy e o Tensor Tensão
+
+Todo engenheira e engenheiro deve se familiarizar com o problema do escoamento de fluidos em dutos, uma situação tão básica que merece um capítulo próprio em qualquer livro de Mecânica dos Fluidos com foco de Engenharia (cf. Cap. \@ref(tubulacoes)). O fluido escoando está sujeito a um gradiente de velocidades, principalmente quando entra no tubo, e portanto está acelerando e portanto sofre a ação de forças, usualmente:
+
+1. A pressão imposta por uma bomba ou compressor;
+2. O atrito da parede com o fluido;
+3. A força gravitacional.
+
+Todo material responde a aplicação de forças externas através da criação de tensões internas. Por exemplo, conforme demonstrado no Cap. \@ref(estatica), um fluido em repouso desenvolve uma distribuição de pressão como contraponto ao seu próprio peso. No caso geral de um fluido escoando em 3 dimensões, dizemos que cada ponto $(x,y,z)$ desenvolve o seu **tensor tensão** $\sigma$, um tensor de segunda ordem por cada elemento $\sigma_{ij}$ precisa de suas direções especificadas. Por exemplo, $\sigma_{xy}$ representa a tensão interna que se desenvolve em um plano normal à direção $x$ mas que aponta na direção $y$. Matematicamente, o tensor tensão de um fluido em um problema 3D é representado por uma matriz de 9 elementos $\sigma_{ij}$.
+
+Se aplicarmos a Segunda Lei de Newton a um elemento infinitesimal de fluido, considerando então como atuantes este tensor tensão e a força gravitacional, teremos então a chamada **Equação de Cauchy**:
+
+$$
+\rho \frac{\mathrm{d} \vec{V}}{\mathrm{d}t} = \rho \vec{g} + \nabla \cdot \sigma
+$$
+
+onde o último termo é o divergente de um tensor, e portanto é um vetor [@bib:kundu01-fluid-mechan]. Por exemplo, a componente $x$ deste vetor é:
+
+$$
+\left(\nabla \cdot \sigma\right)\cdot \hat{i} = \frac{\partial \sigma_{xx}}{\partial x} + \frac{\partial \sigma_{yx}}{\partial y} + \frac{\partial \sigma_{zx}}{\partial z}
+$$
+
+Ao observar as ordens dos índices na equação acima, perceba que você está somando as forças *na direção $x$*, como esperado.
+
+## A quebra do tensor tensão
+
+Precisamos unir o conceito de tensor tensão com os conceitos cinemáticos apresentados no Cap. \@ref(cinematica). Fazemos isso considerando primeiro que o tensor tensão em um ponto é a soma dos componentes "de fluido em repouso" (ou seja, a pressão), e "de fluido em movimento" (tensões viscosas) [@CengelMFL]:
+
+$$
+\sigma_{ij} = -P \delta_{ij} + \tau_{ij}
+$$
+
+## Fluido Newtoniano
+
+O último passo para chegar às Equações de Navier-Stokes é considerar que o fluido tem viscosidade e densidades constantes, e obedece a uma linearidade entre a tensão viscosa e a taxa de deformação:
+
+$$
+\tau_{ij} = 2 \mu \varepsilon_{ij}
+$$
+
+onde o fator de 2 é apenas um conveniência matemática. 
+
+Na direção $i$, a Equação de Navier-Stokes para essas condições é:
+
+$$
+\rho \frac{\mathrm{d} V_i}{\mathrm{d}t} = -\frac{\partial P}{\partial x_i} + \rho g_i + \mu \nabla^2 V_i
+$$
+
+onde o laplaciano $\nabla^2$ é a soma das derivadas parciais de segunda ordem em cada coordenada.
+
+
+## Soluções Numéricas
+
+As equações de Navier-Stokes são complicadas por envolvem derivadas de segunda ordem e, principalmente não-linearidades no termo de aceleração - que, por si só, não é um efeito viscoso, mas que geralmente pode ser linearizado quando o escoamento é invíscido [@bib:white91-viscous-fluid-flow]. Assim, soluções são complicadas, e em sala de aula trabalhamos com problemas simples, como escoamento laminar em dutos e camadas-limite sobre placa plana, mais com o objetivo de familiarizar o engenheiro com o comportamento matemático dessas equações.
+
+O desenvolvimento atual dessas equações passa pelas soluções numéricas. Um dos grandes desafios atuais da Engenharia é o projeto integrado de sistemas complexos, e isto requer soluções numéricas cada vez mais rápidas e precisas. O Aprendizado de Máquina tem sido uma fronteira nesse campo ao permitir interpolação de diferentes soluções.
+
+## Novos desenvolvimentos
+
+Muitos sistemas atuais de engenharia também tem características que invalidam as Equações de Navier-Stokes. Sistemas *magnetoreológicos* inserem nanopartículas metálicas em um escoamento de óleo de maneira que a aplicação de um campo magnético provoque forças sobre o escoamento além da gravidade e da viscosidade, e esse campo (e portanto a força) pode ser controlada - e.g. em um freio quando mais ou menos desaceleração é desejada.
+
+O escoamento de fluidos em meios porosos também dá origem a outras tensões (que não explicadas apenas pela linearidade, dada a escala muito próxima entre fluido e sólido).
+
+Em geral, melhoramentos na função de um sistema introduzem novas formas de tensão interna. Como simular este tipo de sistema? Os nossos alunos e alunas estão preparados para encarar este desafio?
