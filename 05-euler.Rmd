@@ -18,7 +18,7 @@ A Equação de Bernoulli *pode* ser modificada para incluir outros efeitos. Por 
 
 ## Equação de Euler
 
-Os nomes de Euler e [Bernoulli](https://pt.wikipedia.org/wiki/Daniel_Bernoulli) são muito associados entre si e ao conceito de *escoamento ideal* (VER REF SCHILICHTING), e de fato foi Euler quem formulou precisamente a Equação de Bernoulli (a partir de ideias deste) [@bib:white6]. O que chamamos de *Equação de Euler* em mecânica dos fluidos é uma forma diferencial da Equação de Bernoulli.
+Os nomes de Euler e [Bernoulli](https://pt.wikipedia.org/wiki/Daniel_Bernoulli) são muito associados entre si e ao conceito de *escoamento ideal*, e de fato foi Euler quem formulou precisamente a Equação de Bernoulli (a partir de ideias deste) [@bib:white6]. O que chamamos de *Equação de Euler* em mecânica dos fluidos é uma forma diferencial da Equação de Bernoulli.
 
 Pegamos um volume de controle cartesiano, e aplicamos a Segunda Lei de Newton; as forças envolvidas, assumindo ausência de atrito, são apenas a pressão e a gravidade. Fazendo o volume tender a zero, chegamos a:
 
@@ -26,4 +26,25 @@ $$
 \rho \vec{g} - \nabla P = \rho \frac{\mathrm{d} \vec{V}}{\mathrm{d}t}
 $$
 
-Em muitos trocadores de calor, é necessário projetar muito bem *as regiões de entrada*. Como falado anteriormente, normalmente o fluido vem de algum reservatório e entra no trocador para ser aquecido (e.g. para reduzir a viscosidade do óleo) ou resfriado (para poder ser descartado na atmosfera ou em alguma corrente de água com segurança). No núcleo do trocador, obviamente as paredes do tubo induzem efeitos viscosos e a Equação de Euler não vale; porém, nos acomplamentos de entrada, a Equação de Euler pode ser implementada em Softwares de Dinâmica dos Fluidos Computacionais CFD para dimensionar, com simulações muito rápidas (já que não há efeitos viscosos), a geometria correta para garantir que a distribuição de velocidades seja adequada e que não haja zona mortas (onde a velocidade é muito baixa). As equações do movimento completas pode ser usadas então nas ηpas finais de refino. A região de entrada de regeneradores usados em refrigeração magnética, por exemplo, têm impacto considerável na máquina [@bib:trevizoli18-influen]!
+### Influência da ausência de efeitos viscosos no tempo computacional
+
+Como expresso no Cap. \@ref(cinematica), a aceleração total deve ser escrita como a soma de dois termos:
+
+
+$$
+\frac{\mathrm{d} \vec{V}}{\mathrm{d}t} = \frac{\partial \vec{V}}{\partial t} + \vec{V}\cdot\nabla \vec{V}
+$$
+Onde o último termo pode ser decomposto [@bib:white91-viscous-fluid-flow]:
+
+$$
+\vec{V}\cdot\nabla \vec{V} = \nabla\left(\frac{V^2}{2}\right) - \vec{V}\times\left(\nabla\times\vec{V}\right)
+$$
+
+onde o último termo entre parênteses é o rotacional da velocidade. Acontece que matematicamente pode-se provar o seguinte: se o escoamento é invíscido, então a Equação de Euler vale, e se integrada *ao longo de uma linha de corrente*, ela resulta na Equação de Bernoulli. Porém, adicionalmente *se o escoamento é irrotacional*, então a Equação de Euler pode ser integrado *entre dois pontos quaisquer* e também resultar na Equação de Bernoulli [@bib:white6].
+Usualmente, um escoamento invíscido é também um escoamento irrotacional.
+
+Se o termo rotacional some, a aceleração convectiva é reduzida ao gradiente da energia cinética, um termo conservativo. O efeito prático é que a grande não-linearidade de $\vec{V}\cdot\nabla \vec{V}$ é reduzida, o que reduz o tempo de simulação para convergência do cálculo do campo de velocidades (o grande objetivo de simulações de escoamentos).
+
+Em muitos trocadores de calor, é necessário projetar muito bem *as regiões de entrada*. Como falado anteriormente, normalmente o fluido vem de algum reservatório e entra no trocador para ser aquecido (e.g. para reduzir a viscosidade do óleo) ou resfriado (para poder ser descartado na atmosfera ou em alguma corrente de água com segurança). No núcleo do trocador, obviamente as paredes do tubo induzem efeitos viscosos e a Equação de Euler não vale; porém, nos acomplamentos de entrada, a Equação de Euler pode ser implementada em Softwares de Dinâmica dos Fluidos Computacionais CFD para dimensionar, com simulações muito rápidas, a geometria correta para garantir que a distribuição de velocidades seja adequada e que não haja zona mortas (onde a velocidade é muito baixa). As equações do movimento completas pode ser usadas então nas etapas finais de refino. A região de entrada de regeneradores usados em refrigeração magnética, por exemplo, têm impacto considerável na máquina [@bib:trevizoli18-influen]!
+
+Portanto, com o uso da Equação de Euler, reduz-se o *espaço de projeto* dos trocadores e regeneradores, levando a mais testes com geometrias diferentes e possivelmente achando mais facilmente os pontos de ótimo. 

@@ -18,9 +18,11 @@ descrições-lagrangiana-e-euleriana
 vetores-velocidade-e-aceleração
 equação-da-continuidade
 corrente
+deformação-de-fluidos
 euler
 equação-de-bernoulli-e-equação-integral-da-energia
 equação-de-euler
+influência-da-ausência-de-efeitos-viscosos-no-tempo-computacional
 navier
 a-equação-de-cauchy-e-o-tensor-tensão
 a-quebra-do-tensor-tensão

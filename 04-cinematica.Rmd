@@ -4,7 +4,7 @@ No Cap. \@ref(integral), o *vetor velocidade* apareceu diversas vezes, mas não 
 
 ## Descrições Lagrangiana e Euleriana
 
-O que é a "velocidade de um ponto"? É a velocidade com que uma *partícula de fluido* (i.e. uma pequena massa fixa de fluido de volume zero, ou seja, um ponto de fluido) que se situa naquele ponto se move no espaço. Por exemplo, se a velocidade num ponto na direção x é 1 m/s, então se essa velocidade for uniforme no espaço em um segundo a partícula vai ter movido 1 m na direção x. Essa é a [**Descrição Lagragiana**](https://pt.wikipedia.org/wiki/Joseph-Louis_Lagrange) do escoamento, que segue trajetórias individuais de partículas - ou seja, num sistema cartesiana, traçamos a curva $(x(t),y(t),z(t))$ de cada particula, como os exercícios de Física Básica que todo estudante de Engenharia deve fazer nas primeiras fases do curso, ou mesmo como o tratamento analítico de Mecânica dos Fluidos [@bib:white6] (como falei no Cap. \@ref(estatica), considero que precisamos melhor integrar a Mecânica dos Sólidos da dos Fluidos).
+O que é a "velocidade de um ponto"? É a velocidade com que uma *partícula de fluido* (i.e. uma pequena massa fixa de fluido de volume zero, ou seja, um ponto de fluido) que se situa naquele ponto se move no espaço. Por exemplo, se a velocidade num ponto na direção x é 1 m/s, então se essa velocidade for uniforme no espaço em um segundo a partícula vai ter movido 1 m na direção x. Essa é a [**Descrição Lagragiana**](https://pt.wikipedia.org/wiki/Joseph-Louis_Lagrange) do escoamento, que segue trajetórias individuais de partículas - ou seja, num sistema cartesiana, traçamos a curva $(x(t),y(t),z(t))$ de cada particula, como os exercícios de Física Básica que todo estudante de Engenharia deve fazer nas primeiras fases do curso, ou mesmo como o tratamento analítico de Mecânica dos Sólidos [@bib:white6] (como falei no Cap. \@ref(estatica), considero que precisamos melhor integrar a Mecânica dos Sólidos da dos Fluidos).
 
 
 Em Mecânica dos Fluidos, geralmente utilizamos a [**Descrição Euleriana**](https://pt.wikipedia.org/wiki/Leonhard_Euler), que se preocupe com as distribuições espaciais das propriedades. Ou seja, cada ponto do espaço tem o seu vetor velocidade, a sua pressão, a sua temperatura etc, mas não nos preocupamos mais com a trajetória individual de cada partícula. Podemos integrar essas propriedades em volumes e superfícies para calcular forças e potências de equipamentos - foi exatamente o que fizemos no capítulo anterior!
@@ -29,12 +29,15 @@ $$
 $$
 
 
-Porém, perceba que os componentes têm variações espaciais **e** temporais. Aqui precisamos considerar também a Descrição Lagrangiana, uma vez que *há* um movimento de fluido, mesmo que não sigamos uma partícula em específico. Por exemplo, para a primeira componente:
+Porém, perceba que os componentes têm variações espaciais **e** temporais. Agora - e isto é bem possível de causar confusões - este vetor euleriano (i.e. que considera a velocidade e aceleração como propriedades do espaço e do tempo e não de uma partícula qualquer) é usado em leis lagrangianas, que são formuladas com base em sistemas de massa fixa [@bib:white91-viscous-fluid-flow]. Assim, é preciso misturar um pouco os conceitos (que são apenas abordagens diferentes para os mesmos fenômenos físicos).
+
+Por exemplo, para a primeira componente, podemos escrever:
 
 $$
 \frac{\mathrm{d} V_x}{\mathrm{d}t} = \frac{\partial V_x}{\partial t} + \frac{\partial V_x}{\partial x}\frac{\mathrm{d} x}{\mathrm{d}t} + \frac{\partial V_x}{\partial y}\frac{\mathrm{d} y}{\mathrm{d}t} + \frac{\partial V_x}{\partial z}\frac{\mathrm{d} z}{\mathrm{d}t}
 $$
-Porém,
+
+Se encaramos a velocidade como uma "quantidade de movimento por unidade de massa" que é transportada pelas partículas de fluido, então ela varia temporalmente para uma posição fixa (por exemplo, um fluido que sai de uma bomba é acelerado conforme a rotação do rotor aumenta), mas também as variações espaciais dessa propriedade são transportadas pelas partículas de movimento. Como consequência, precisamos denotar:
 
 $$
 \frac{\mathrm{d} x}{\mathrm{d}t} = V_x
@@ -60,7 +63,7 @@ $$
 
 Assim, a aceleração *total* contém duas partes: a aceleração local (com posição fixa) e a aceleração convectiva. É apenas o primeiro termo que é nulo em regime permanente. Num campo de escoamento que é não-uniforme espacialmente (como o escoamento dentro de um tubo), mas em regime permanente (essa distribuição espacial não muda com o tempo), uma partícula que se move no espaço vai experimentar uma aceleração (mudanças de velocidade) devido a essa passagem por locais com diferentes velocidades locais.
 
-Essa derivada total da velocidade (que pode ser aplicada a quaisquer campos escalares ou vetoriais) é chamada de derivada material ou substantiva, e às vezes recebe um símbolo especial. Como a explicação acima deixa claro, é apenas uma derivada total no tempo de grandezas que variam no tempo, então gosto de chamar de derivada total e usar o símbolo padrão de derivada.
+Essa derivada total da velocidade (que pode ser aplicada a quaisquer campos escalares ou vetoriais, que também então sofrem variações locais e convectivas) é chamada de derivada material ou substantiva, e às vezes recebe um símbolo especial. Como a explicação acima deixa claro, é apenas uma derivada total no tempo de grandezas que variam no tempo, então gosto de chamar simplesmente de derivada total e usar o símbolo padrão de derivada.
 
 ## Equação da Continuidade
 
@@ -114,3 +117,22 @@ O lado esquerdo é o *diferencial total* da função corrente, que portanto é z
 Para um escoamento bimensional incompressível em regime permanente, as linhas de corrente representam as trajetórias das partículas de fluido, e portanto são muito úteis para ganhar uma percepção maior do que está acontecendo. Em particular, o fluido não pode atravessar uma linha de corrente.
 
 Em minha experiência como professor, observo que esses conceitos de cinemática não são nada fáceis, pois há muita variações acontecendo - daí, ainda mais, saliento a importância de fazer desenhos e esboços. Deveria a Engenharia Mecânica ter menos ênfase em "Desenho Técnico" e mais ênfase geral em *design*?
+
+## Deformação de fluidos
+
+O conceito mais complicado ainda deste Capítulo é o *tensor deformação de um fluido* - a noção de que, quando um fluido inicialmente em repouso acelera, retas e planos *desenhados* originalmente mudam de forma.
+
+Considere uma reta na direção $x$ em um escoamento. Se há gradientes de velocidade na direção $x$, então esta reta vai se deformar linearmente, a *taxa temporal de deformação linear*, isto é, o quanto o comprimento de uma reta aumenta relativo ao seu comprimento inicial por unidade de tempo é:
+
+$$
+\varepsilon_{xx} = \frac{\partial V_x}{\partial x}
+$$
+E similarmente para as outras direções cartesianas.
+
+A taxa de deformação cisalhante é a metade da taxa de variação temportal do ângulo entre duas retas originalmente perpendiculares. Por exemplo, se as retas originalmente estão no plano $xy$, pode-se mostrar geometricamente que [@CengelMFL]:
+
+$$
+\varepsilon_{xy} = \frac{1}{2}\left(\frac{\partial V_x}{\partial y} + \frac{\partial V_y}{\partial x}\right)
+$$
+
+E similarmente para outros planos. O *tensor taxa de deformação* resultante é usado no Cap. \@ref(navier).

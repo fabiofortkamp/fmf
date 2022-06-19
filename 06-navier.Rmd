@@ -38,13 +38,13 @@ $$
 
 ## Fluido Newtoniano
 
-O último passo para chegar às Equações de Navier-Stokes é considerar que o fluido tem viscosidade e densidades constantes, e obedece a uma linearidade entre a tensão viscosa e a taxa de deformação:
+O último passo para chegar às Equações de Navier-Stokes é considerar que o fluido tem viscosidade e densidades constantes, e obedece a uma linearidade entre a tensão viscosa e a taxa de deformação (cf. Cap. \@ref(cinematica)):
 
 $$
 \tau_{ij} = 2 \mu \varepsilon_{ij}
 $$
 
-onde o fator de 2 é apenas um conveniência matemática. 
+onde o fator de 2 é apenas um conveniência matemática - lembrando que a deformação foi definiada como a *metade* de um ângulo.
 
 Na direção $i$, a Equação de Navier-Stokes para essas condições é:
 
