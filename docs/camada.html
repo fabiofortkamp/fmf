@@ -23,7 +23,7 @@
 <meta name="author" content="Fábio P. Fortkamp" />
 
 
-<meta name="date" content="2022-06-19" />
+<meta name="date" content="2022-06-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -209,7 +209,11 @@ div.csl-indent {
 <li><a href="tubulacoes.html#transição-e-turbulência" id="toc-transição-e-turbulência"><span class="toc-section-number">8.2</span> Transição e turbulência<span></span></a></li>
 <li><a href="tubulacoes.html#novas-fronteiras-em-geometrias-de-tubulações" id="toc-novas-fronteiras-em-geometrias-de-tubulações"><span class="toc-section-number">8.3</span> Novas fronteiras em geometrias de tubulações<span></span></a></li>
 </ul></li>
-<li><a href="camada.html#camada" id="toc-camada"><span class="toc-section-number">9</span> Camada-Limite<span></span></a></li>
+<li><a href="camada.html#camada" id="toc-camada"><span class="toc-section-number">9</span> Camada-Limite<span></span></a>
+<ul>
+<li><a href="camada.html#sucesso-da-teoria-de-camada-limite" id="toc-sucesso-da-teoria-de-camada-limite"><span class="toc-section-number">9.1</span> Sucesso da teoria de camada-limite<span></span></a></li>
+<li><a href="camada.html#simplificações-de-camada-limite" id="toc-simplificações-de-camada-limite"><span class="toc-section-number">9.2</span> Simplificações de Camada-Limite<span></span></a></li>
+</ul></li>
 <li><a href="arrasto.html#arrasto" id="toc-arrasto"><span class="toc-section-number">10</span> Arrasto e Sustentação<span></span></a></li>
 <li><a href="compressivel.html#compressivel" id="toc-compressivel"><span class="toc-section-number">11</span> Escoamento Compressível<span></span></a>
 <ul>
@@ -238,7 +242,55 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="camada" class="section level1 hasAnchor" number="9">
 <h1><span class="header-section-number">Capítulo 9</span> Camada-Limite<a href="camada.html#camada" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Já é um clichê de engenharia dizer que as Equações de Navier-Stokes (cf. Cap. <a href="navier.html#navier">6</a>) são complicadas. Vamos repetir aqui a componente na direção <span class="math inline">\(i\)</span>:</p>
+<p><span class="math display">\[
+\rho \frac{\mathrm{d} V_i}{\mathrm{d}t} = -\frac{\partial P}{\partial x_i} + \rho g_i + \mu \nabla^2 V_i
+\]</span></p>
+<p>Neste capítulo, para facilitar a discussão, vamos desconsiderar os efeitos gravitacionais por serem menos importantes que os outros, e vamos considerar escoamento permanente bidimensional incompressível - por serem as situações típicas que queremos analisar (depois vamos explicar por quê). Vamos chamar as componentes da velocidade de <span class="math inline">\((u,v)\)</span> nas direções respectivas <span class="math inline">\((x,y)\)</span>. As equações de conservação da massa e quantidade de movimento ficam então:</p>
+<p><span class="math display">\[
+\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} = 0
+\]</span></p>
+<p><span class="math display">\[
+u\frac{\partial u}{\partial x} + v\frac{\partial u}{\partial y} = -\frac{1}{\rho}\frac{\partial P}{\partial x} + \nu\left(\frac{\partial^2 u }{\partial x^2} + \frac{\partial^2 u }{\partial y^2}\right)
+\]</span></p>
+<p><span class="math display">\[
+u\frac{\partial v}{\partial x} + v\frac{\partial v}{\partial y} = -\frac{1}{\rho}\frac{\partial P}{\partial y} + \nu\left(\frac{\partial^2 v }{\partial x^2} + \frac{\partial^2 v }{\partial y^2}\right)
+\]</span></p>
+<p>Estas três equações de escoamento incompressível devem ser resolvidas para a tupla <span class="math inline">\((u,v,P)\)</span>. O que as torna tão difíceis? Alguns pontos:</p>
+<ul>
+<li>As equações não são separáveis</li>
+<li>Os termos de inércia são não-lineares</li>
+<li>Os termos viscosos são elípticos, o que requer condições de contorno a jusante do escoamento; isto aumenta o tempo computacional <span class="citation">(KUNDU; COHEN, 2001)</span> e impede um simples procedimento de marcha, que agora precisa ser iterado para convergir as condições de contorno a jusante.</li>
+</ul>
+<div id="sucesso-da-teoria-de-camada-limite" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Sucesso da teoria de camada-limite<a href="camada.html#sucesso-da-teoria-de-camada-limite" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A grande sacada da teoria de camada-limite é que, para alguns problemas eminemente <em>práticos</em> <span class="citation">(KUNDU; COHEN, 2001)</span>, nem todos os termos importam.</p>
+<p>Nas minhas aulas de Transferência de Calor, quando começamos a estudar o assunto de convecção, eu sempre recomendo a meus alunos que examinem as tabelas de fluidos no final dos livros para ter uma noção de algumas propriedades. Um exame rápido mostra que, para a viscosidade cinemática <span class="math inline">\(\nu\)</span> à temperatura ambiente, existe quase uma separação binária: ar, água, fluidos refrigerantes, gases de combustão etc, que possuem viscosidade da ordem de alguns cm<span class="math inline">\(^2\)</span>/s, e óleos lubrificantes e glicerinas, que possuem viscosidade mil vezes maior.
+Para esse último caso, o número de Reynolds baseado em algum comprimento característico <span class="math inline">\(L\)</span> e alguma velocidade característica <span class="math inline">\(V\)</span>:</p>
+<p><span class="math display">\[
+\mathrm{Re} = \frac{UL}{\nu}
+\]</span></p>
+<p>vai ser baixo, e a teoria apresentada neste capítulo tem pouca validade.</p>
+<p>Porém, quando <span class="math inline">\(\mathrm{Re}\)</span> é alto, no escoamento de um fluido pouco viscoso ao redor de um corpo sólido - ou seja, escoamento de água ao redor de tubos em um trocador de calor, ou de ar ao redor de uma asa de avião em velocidades bem menores que a velocidade do som - coisas curiosas acontecem. A teoria de camada-limite prescreve que os efeitos viscosos só são não-deprezíveis em uma camada <em>muito fina</em> ao redor do corpo sólido (da ordem de alguns centímetros para um corpo de alguns metros de comprimento). Usar a equação de Euler (cf. Cap. <a href="euler.html#euler">5</a>) fora da camada-limite, “infinitamente longe da superfície sólida, para simular o escoamento produz resultados compatíves com experimentos, não importa a viscosidade do fluido (desde que esteja realmente fora da camada limite). Assumir uma camada-limite fina, onde junto à parede o fluido está aderente à superfície (não-deslizamento) não importa a viscosidade, bate com os experimentos <span class="citation">(KUNDU; COHEN, 2001)</span>.</p>
+<p>Atualmente, podemos pensar no sucesso da teoria de camada-limite como um sucesso computacional. A simulação do escoamento em geometrias mais complexas, de trocadores imitando a natureza por exemplo (cf. Cap. <a href="tubulacoes.html#tubulacoes">8</a>), é simplificada porque o domínio de computação é dividido em dois: um pequeno, com poucos nós, onde é preciso levar muitos termos em conta, e um grande domínio externo onde poucos termos importam.</p>
+</div>
+<div id="simplificações-de-camada-limite" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Simplificações de Camada-Limite<a href="camada.html#simplificações-de-camada-limite" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Mas que simplificações são essas? Vamos chamar de <span class="math inline">\(x\)</span> o eixo paralelo originalmente ao escoamento ao redor de um corpo. A velocidade <span class="math inline">\(v\)</span> é então zero fora da camada-limite, e tem um valor pequeno dentro da camada-limite para satisfazer a conservação da massa, já que o fato de que <span class="math inline">\(u\)</span> varia de zero na superfície até <span class="math inline">\(V\)</span> fora da camada-limite implica em variações de <span class="math inline">\(u\)</span>. Porém, os gradientes na direção <span class="math inline">\(x\)</span> são bem menores que na direção <span class="math inline">\(y\)</span> (onde é preciso haver variações finitas numa distância pequena).</p>
+<p>A equação de conservação da massa então não é alterada, pois <span class="math inline">\(u\)</span> não pode ser desprezada e nem gradientes na direção <span class="math inline">\(y\)</span>. Na conservação da quantidade de movimento em <span class="math inline">\(x\)</span>, o gradiente de segunda ordem pode ser desprezado:</p>
+<p><span class="math display">\[
+u\frac{\partial u}{\partial x} + v\frac{\partial u}{\partial y} = -\frac{1}{\rho}\frac{\partial P}{\partial x} + \nu\left( \frac{\partial^2 u }{\partial y^2}\right)
+\]</span></p>
+<p>Por que o gradiente em <span class="math inline">\(x\)</span> no lado esquerdo não pode ser desprezado? Porque ele está sendo transportado pela própria velocidade <span class="math inline">\(u\)</span>, que é a maior componente de velocidade, ao passo que a derivada segunda está multiplicada pela viscosidade, que é suposta pequena. Isso automaticamente elimina a necessidade de uma segunda condição de contorno de <span class="math inline">\(u\)</span> na direção <span class="math inline">\(x\)</span>.</p>
+<p>E a conservação em <span class="math inline">\(y\)</span>? Todos os termos da ordem de <span class="math inline">\(v\)</span> são muito pequenos. O primeiro gradiente do lado esquero está multiplicado por <span class="math inline">\(u\)</span>, que é grande, mas é um gradiente em <span class="math inline">\(x\)</span>, que é pequeno. O resultado prático é:</p>
+<p><span class="math display">\[
+\frac{\partial P}{\partial y} = 0
+\]</span></p>
+<p>ou seja, a pressão é imposta pelo escoamento invíscido (que pode ser resolvido separadamente) na camada-limite.</p>
+<p>Pode-se mostrar que essa explicação intuitiva dada acima (“quais termos somem e quais não”) pode ser tornada exata quando se adimensionaliza as Equações de Navier-Stokes e se toma o limite <span class="math inline">\(\mathrm{Re} \to \infty\)</span>.</p>
+<p>Diferentes soluções existem para as equações simplificadas de camada-limite <span class="citation">(BEJAN, 1995)</span>. Como na maior parte das situações de engenharia, devemos aliar soluções analíticas exatas (que fornecem um entendimento matemático e podem ser usadas para comparar e validar experimentos e algoritmos numéricos), numéricas (que são confiáveis depois de comparadas com experimentos e soluções simplificadas) e experimentais para o entendimento completo do problema e projeto final de sistemas de engenharia.</p>
 
+</div>
 </div>
             </section>
 

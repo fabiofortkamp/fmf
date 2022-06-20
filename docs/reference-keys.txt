@@ -35,6 +35,8 @@ atrito
 transição-e-turbulência
 novas-fronteiras-em-geometrias-de-tubulações
 camada
+sucesso-da-teoria-de-camada-limite
+simplificações-de-camada-limite
 arrasto
 compressivel
 velocidades-sônicas
