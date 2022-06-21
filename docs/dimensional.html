@@ -23,7 +23,7 @@
 <meta name="author" content="Fábio P. Fortkamp" />
 
 
-<meta name="date" content="2022-06-20" />
+<meta name="date" content="2022-06-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -242,6 +242,44 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="dimensional" class="section level1 hasAnchor" number="7">
 <h1><span class="header-section-number">Capítulo 7</span> Análise Dimensional e Semelhança<a href="dimensional.html#dimensional" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Vamos considerar a Equação de Navier-Stokes na direção <span class="math inline">\(x\)</span> apresentada no Capítulo anterior:</p>
+<p><span class="math display">\[
+\rho \frac{\mathrm{d} V_x}{\mathrm{d}t} = -\frac{\partial P}{\partial x}  + \mu \nabla^2 V_x
+\]</span>
+onde assumimos que a gravidade não atua na direção <span class="math inline">\(x\)</span>.</p>
+<p>Vamos aplicar essa equação ao escoamento sobre um corpo, e queremos calcular o gradiente de pressão. Se desprezarmos os termos transientes, temos então:</p>
+<p><span class="math display">\[
+\rho V_x \frac{\mathrm{d} V_x}{\mathrm{d}x} = -\frac{\partial P}{\partial x} + \mu \nabla^2 V_x
+\]</span>
+Preciamos de duas condições de contorno: uma provavelmente vai ser estabelecida em <span class="math inline">\(x=0\)</span>, e outra em <span class="math inline">\(x=L\)</span>. A velocidade vai variar de 0 junto ao corpo até um valor máximo <span class="math inline">\(U\)</span>. Seja <span class="math inline">\(\Delta P\)</span> a queda de pressão do fluido ao passar pelo corpo; ela vai ser calculada a partir da equação acima, que é não linear e de segunda ordem. Porém, inspeciando a equação, existe uma quantidade finita de parâmetros que deve influenciar esse cálculo:</p>
+<p><span class="math display">\[
+\Delta P = f(L,\rho,\mu,U)
+\]</span>
+Isso <em>é</em> uma equação, ainda que não saibamos a sua forma. Se é uma equação que foi derivada a partir de princípios físicos, então ela deve ser <em>dimensionalmente homogênea</em>. A funçao <span class="math inline">\(f\)</span> deve resultar em algo com <em>dimensão</em> de pressão - mas qual o sistema de <em>unidades</em> que está sendo utilizado?</p>
+<p>Assim, é geralmente bastante conveniente trabalhar com equações governantes na forma <em>adimensional</em>, de maneira que o resultado não dependa das unidades.</p>
+<p>Existem 7 dimensões básicas:</p>
+<ol style="list-style-type: decimal">
+<li>Massa</li>
+<li>Comprimento</li>
+<li>Tempo</li>
+<li>Temperatura</li>
+<li>Corrente Elétrica</li>
+<li>Quantidade de luz</li>
+<li>Quantidade de matéria</li>
+</ol>
+<p>Porém, nem todos estão presentes na relação da queda de pressão acima, mas apenas massa, comprimento e tempo.</p>
+<p>Existe um <em>Teorema Pi de Buckingham</em> que diz o seguinte: se existe uma relação entre <span class="math inline">\(n\)</span> variáveis dimensionais e no máximo <span class="math inline">\(j\)</span> dimensões, então existem <span class="math inline">\(k = n-j\)</span> grupos adimensionais que representam a mesma relação.</p>
+<p>(Na verdade <span class="math inline">\(j\)</span> pode ser até menor que o número de dimensões, dependendo do problema).</p>
+<p>Vamos testar esse caso: <span class="math inline">\(n = 5, j = 3\)</span>, logo deve existir <span class="math inline">\(k=2\)</span> grupos.</p>
+<p>Vamos escolher <span class="math inline">\(j\)</span> parâmetros, por exemplo, <span class="math inline">\(\rho,U,L\)</span>, sobrando <span class="math inline">\(\mu,\Delta P\)</span>.</p>
+<p>Definimos um primeiro grupo Pi:</p>
+<p><span class="math display">\[
+\Pi_1 = \mu \rho^a U^b L^c
+\]</span></p>
+<p>como <span class="math inline">\(\Pi_1\)</span> tem de ser adimensional, isso forma um sistema de 3 equações (zerar os expoentes) para os três expoentes, resultando:</p>
+<p><span class="math display">\[
+\Pi_1 = \frac{\mu}{\rho U L} = \frac{1}{\mathrm{Re}_L}
+\]</span></p>
 
 </div>
             </section>

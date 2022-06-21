@@ -1,1 +1,55 @@
 # Análise Dimensional e Semelhança {#dimensional}
+
+Vamos considerar a Equação de Navier-Stokes na direção $x$ apresentada no Capítulo anterior:
+
+$$
+\rho \frac{\mathrm{d} V_x}{\mathrm{d}t} = -\frac{\partial P}{\partial x}  + \mu \nabla^2 V_x
+$$
+onde assumimos que a gravidade não atua na direção $x$.
+
+Vamos aplicar essa equação ao escoamento sobre um corpo, e queremos calcular o gradiente de pressão. Se desprezarmos os termos transientes, temos então:
+
+$$
+\rho V_x \frac{\mathrm{d} V_x}{\mathrm{d}x} = -\frac{\partial P}{\partial x} + \mu \nabla^2 V_x
+$$
+Preciamos de duas condições de contorno: uma provavelmente vai ser estabelecida em $x=0$, e outra em $x=L$. A velocidade vai variar de 0 junto ao corpo até um valor máximo $U$. Seja $\Delta P$ a queda de pressão do fluido ao passar pelo corpo; ela vai ser calculada a partir da equação acima, que é não linear e de segunda ordem. Porém, inspeciando a equação, existe uma quantidade finita de parâmetros que deve influenciar esse cálculo:
+
+$$
+\Delta P = f(L,\rho,\mu,U)
+$$
+Isso *é* uma equação, ainda que não saibamos a sua forma. Se é uma equação que foi derivada a partir de princípios físicos, então ela deve ser *dimensionalmente homogênea*. A funçao $f$ deve resultar em algo com *dimensão* de pressão - mas qual o sistema de *unidades* que está sendo utilizado?
+
+Assim, é geralmente bastante conveniente trabalhar com equações governantes na forma *adimensional*, de maneira que o resultado não dependa das unidades.
+
+Existem 7 dimensões básicas:
+
+1. Massa
+2. Comprimento
+3. Tempo
+4. Temperatura
+5. Corrente Elétrica
+6. Quantidade de luz
+7. Quantidade de matéria
+
+Porém, nem todos estão presentes na relação da queda de pressão acima, mas apenas massa, comprimento e tempo.
+
+Existe um *Teorema Pi de Buckingham* que diz o seguinte: se existe uma relação entre $n$ variáveis dimensionais e no máximo $j$ dimensões, então existem $k = n-j$ grupos adimensionais que representam a mesma relação. 
+
+(Na verdade $j$ pode ser até menor que o número de dimensões, dependendo do problema).
+
+Vamos testar esse caso: $n = 5, j = 3$, logo deve existir $k=2$ grupos.
+
+Vamos escolher $j$ parâmetros, por exemplo, $\rho,U,L$, sobrando $\mu,\Delta P$.
+
+Definimos um primeiro grupo Pi:
+
+$$
+\Pi_1 = \mu \rho^a U^b L^c
+$$
+
+como $\Pi_1$ tem de ser adimensional, isso forma um sistema de 3 equações (zerar os expoentes) para os três expoentes, resultando:
+
+$$
+\Pi_1 = \frac{\mu}{\rho U L} = \frac{1}{\mathrm{Re}_L}
+$$
+
