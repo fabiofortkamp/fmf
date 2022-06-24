@@ -7,17 +7,17 @@ $$
 $$
 onde assumimos que a gravidade não atua na direção $x$.
 
-Vamos aplicar essa equação ao escoamento sobre um corpo, e queremos calcular o gradiente de pressão. Se desprezarmos os termos transientes, temos então:
+Vamos aplicar essa equação ao escoamento em regime permanente sobre um corpo de dimensão característica $L$ (diâmetro, comprimento etc), e queremos calcular o gradiente de pressão. Se desprezarmos os termos transientes, temos então:
 
 $$
 \rho V_x \frac{\mathrm{d} V_x}{\mathrm{d}x} = -\frac{\partial P}{\partial x} + \mu \nabla^2 V_x
 $$
-Preciamos de duas condições de contorno: uma provavelmente vai ser estabelecida em $x=0$, e outra em $x=L$. A velocidade vai variar de 0 junto ao corpo até um valor máximo $U$. Seja $\Delta P$ a queda de pressão do fluido ao passar pelo corpo; ela vai ser calculada a partir da equação acima, que é não linear e de segunda ordem. Porém, inspeciando a equação, existe uma quantidade finita de parâmetros que deve influenciar esse cálculo:
+Preciamos de duas condições de contorno: uma provavelmente vai ser estabelecida em $x=0$, e outra em $x=L$. A velocidade vai variar de 0 junto ao corpo até um valor máximo $U$ (que deve ser aproximadamente igual à velocidade com que o fluido se aproxima do corpo). Seja $\Delta P$ a queda de pressão do fluido ao passar pelo corpo; ela vai ser calculada a partir da equação acima, que é não linear e de segunda ordem. Porém, inspecionando a equação, existe uma quantidade finita de parâmetros que deve influenciar esse cálculo:
 
 $$
 \Delta P = f(L,\rho,\mu,U)
 $$
-Isso *é* uma equação, ainda que não saibamos a sua forma. Se é uma equação que foi derivada a partir de princípios físicos, então ela deve ser *dimensionalmente homogênea*. A funçao $f$ deve resultar em algo com *dimensão* de pressão - mas qual o sistema de *unidades* que está sendo utilizado?
+Isso *é* uma equação, ainda que não saibamos a sua forma. Se é uma equação que foi derivada a partir de princípios físicos, então ela deve ser [*dimensionalmente homogênea*](https://en.wikipedia.org/wiki/Dimensional_analysis#Dimensional_homogeneity). A funçao $f$ deve resultar em algo com *dimensão* de pressão - mas qual o sistema de *unidades* que está sendo utilizado?
 
 Assim, é geralmente bastante conveniente trabalhar com equações governantes na forma *adimensional*, de maneira que o resultado não dependa das unidades.
 
@@ -37,19 +37,36 @@ Existe um *Teorema Pi de Buckingham* que diz o seguinte: se existe uma relação
 
 (Na verdade $j$ pode ser até menor que o número de dimensões, dependendo do problema).
 
-Vamos testar esse caso: $n = 5, j = 3$, logo deve existir $k=2$ grupos.
+Vamos testar esse caso: $n = 5, j = 3$, logo devem existir $k=2$ grupos.
 
 Vamos escolher $j$ parâmetros, por exemplo, $\rho,U,L$, sobrando $\mu,\Delta P$.
 
-Definimos um primeiro grupo Pi:
+Definimos um primeiro grupo Pi, usando um dos parâmetros que sobra:
 
 $$
 \Pi_1 = \mu \rho^a U^b L^c
 $$
 
-como $\Pi_1$ tem de ser adimensional, isso forma um sistema de 3 equações (zerar os expoentes) para os três expoentes, resultando:
+como $\Pi_1$ tem de ser adimensional, isso forma um sistema de 3 equações (de maneira a zerar os expoentes) para os três expoentes, resultando:
 
 $$
 \Pi_1 = \frac{\mu}{\rho U L} = \frac{1}{\mathrm{Re}_L}
 $$
+Fazendo a mesma coisa para o outro termo:
 
+$$
+\Pi_2 = \Delta P \rho^a U^b L^c
+$$
+O que dá:
+
+$$
+\Pi_2 = \frac{\Delta P}{\rho U^2} 
+$$
+
+Ou seja: em problemas de escoamento ao redor de corpos, a solução da Eq. de Navier-Stokes pode ser expressa como uma relação entre o número de Reynolds e este "coeficiente de atrito". 
+
+Isso se torna bastante eficaz quando aplicamos agora o conceito de *similaridade*. Imagine que você quer calcular a queda de pressão de gases de combustão ao passar por um superaquecedor de caldeira. Medir *in-situ* pode ser custoso, então você pode contruir um modelo *em escala*, onde todas as dimensões são multiplicadas pelo mesmo valor (semelhança geométrica), onde todas as velocidades são multiplicadas pelo mesmo valor e apontam na mesma direção (semelhança cinemática) e onde todas as forças são escalonadas pelo mesmo valor e apontam na mesma direção (semlhança dinâmica) [@CengelMFL)]
+
+Se você constrói um modelo com semelhança completa ao *protótipo*, então as equações são as mesmas, a menos de uma constante multiplicativa, as soluções são as mesmas, a menos de uma constante multiplicativa, e a relação coeficiente de atrito x Reynolds é a mesma (as constantes multiplicativas somem ao fazer a adimensionalização).
+
+A técnica de análise dimensional é uma excelente atividade pedagógica, para o estudante perceber que parâmetros realmente importam, e como ferramenta prática ao planejar experimentos - por exemplo, não é preciso variar comprimentos ou viscosidades ou velocidades de maneira independente, mas apenas o número de Reynolds, um parâmetro que vai aparecer muito nos próximos capítulos.
